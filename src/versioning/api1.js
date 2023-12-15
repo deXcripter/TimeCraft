@@ -2,6 +2,6 @@ const express = require('express');
 const app = express();
 const books = require('../router/book-router.js');
 
-app.use('/book', books);
+app.use('/books', books);
 
 module.exports = app;
