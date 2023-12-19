@@ -3,5 +3,5 @@
 2. User Authentication: Implement user authentication to secure tasks and associate them with specific users.
 
 ### FEATURES AND FUNCTIONALITIES 
-- [ ] CRUD operations: Implement endpoints for creating, reading, updating, and deleting tasks.
+- [x] CRUD operations: Implement endpoints for creating, reading, updating, and deleting tasks.
 - [ ] User Registration and Authorization: Allows users to register accounts and authorize themselves before accessing their tasks.
