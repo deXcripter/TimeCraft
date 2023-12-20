@@ -1,9 +1,8 @@
 const express = require('express');
 
-const tasksRotuer = require('./router/tasks-router');
-
+const versionOneApi = require('./versioning/api1');
 const app = express();
 
-// app.use('/api/v1/tasks', tasksRotuer);
+app.use('/api/v1', versionOneApi);
 
 module.exports = app;
