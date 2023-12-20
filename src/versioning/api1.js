@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const books = require('../router/book-router.js');
 
-app.use('/books', books);
+const tasksRouter = require('../router/tasks-router');
+
+app.use('/tasks', tasksRouter);
 
 module.exports = app;
