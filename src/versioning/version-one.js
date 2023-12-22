@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const globalError = require('../controllers/error-controller');
 
 const tasksRouter = require('../router/tasks-router');
+const userRouter = require('../router/user-router');
 
 app.use('/tasks', tasksRouter);
-app.use(globalError);
+app.use('/users', userRouter);
 
 module.exports = app;
