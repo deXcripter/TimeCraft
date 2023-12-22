@@ -28,6 +28,20 @@ exports.tasks = (req, res, next) => {
   }
 };
 
-// updateTask,
-// tasks,
-// deleteTask
+exports.updateTask = (req, res, next) => {
+  try {
+    res.status(200).json({ status: 'success', message: 'updated' });
+  } catch (err) {}
+};
+
+// exports.delteTask = (req, res, next) => {
+//   const task = Task.find(req.body.taskId);
+
+//   try {
+//     if (!task) {
+//       throw new Error('Task not found')
+//     }
+
+//     res.status(204).json({ status: 'success', message: 'deleted' });
+//   } catch (err) {}
+// };
