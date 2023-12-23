@@ -10,6 +10,8 @@ const globalError = (err, req, res, next) => {
 
   const productionError = (res, err) => {
     if (err.isOperational) {
+      console.log('🌊');
+
       return res.status(err.statusCode).json({
         status: err.status,
         message: err.message,

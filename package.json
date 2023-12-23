@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server.js"
+    "start": "NODE_ENV=development nodemon src/server.js",
+    "start:prod": "NODE_ENV=production nodemon src/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://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@github.com/debugger0x/Books-API.git"
+    "url": "git+https://@github.com/debugger0x/Books-API.git"
   },
   "keywords": [
     "api",

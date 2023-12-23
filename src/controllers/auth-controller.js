@@ -15,7 +15,7 @@ exports.signup = (req, res, next) => {
       status: 'success',
       data: {
         message: 'user created',
-        user: userDetails,
+        user: newUser,
       },
     });
   } catch (err) {
