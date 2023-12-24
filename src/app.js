@@ -12,9 +12,9 @@ app.use(morgan('dev'));
 
 // versioning the api
 app.use('/api/v1', versionOneApi);
+
+// routing
 app.all('*', (req, res, next) => {
-  console.log('🔥');
-  console.log(process.env.NODE_ENV);
   next(new appError('This route does not exist', 404));
 });
 app.use(globalError);

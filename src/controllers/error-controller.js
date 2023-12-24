@@ -8,6 +8,16 @@ const globalError = (err, req, res, next) => {
       .json({ status: err.status, message: err.message, err });
   };
 
+  const handleCastError = (err) => {
+    err.message = `${err.value} is an invalid ${err.path}`;
+    err.statusCode = 400; // bad request
+    err.status = 'failed request';
+    err.isOperational = true;
+
+    return err;
+  };
+
+  // production error
   const productionError = (res, err) => {
     if (err.isOperational) {
       console.log('🌊');
@@ -23,9 +33,12 @@ const globalError = (err, req, res, next) => {
     }
   };
 
+  // START
   if (process.env.NODE_ENV === 'development') {
     developmentError(res, err);
   } else if (process.env.NODE_ENV === 'production') {
+    if (err.name === 'CastError') err = handleCastError(err);
+
     productionError(res, err);
   }
 };
