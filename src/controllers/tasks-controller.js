@@ -1,47 +1,60 @@
 const Task = require('../models/task-model.js');
+const appError = require('../utils/app-error.js');
 
+// create task
 exports.createTask = async (req, res, next) => {
   try {
-    const newTask = {
-      task: req.task,
-      due: req.due,
-      category: req.category,
-    };
+    if (!req.body.task) {
+      next(new appError('Please enter a task', 400));
+    }
 
-    const task = Task.create(newTask);
+    const body = { task: req.body.task };
+    const task = await Task.create(body);
+
     res.status(201).json({
       status: 'success',
       data: task,
     });
   } catch (err) {
-    res.status(400).json({ status: 'fail', message: 'an error occured' });
+    console.log(err.message);
+    return next(new appError(`Error creating task`, 400));
   }
 };
 
-exports.tasks = (req, res, next) => {
+// find task
+exports.tasks = async (req, res, next) => {
   try {
-    const task = Task.find();
-
-    res.status(200).json({});
+    const task = await Task.find();
+    res.status(200).json({ status: 'success', data: task });
   } catch (err) {
     res.status(401).json({ status: 'fail', message: err.message });
   }
 };
 
+// update task
 exports.updateTask = (req, res, next) => {
   try {
     res.status(200).json({ status: 'success', message: 'updated' });
   } catch (err) {}
 };
 
-// exports.delteTask = (req, res, next) => {
-//   const task = Task.find(req.body.taskId);
+exports.deleteTask = (req, res, next) => {
+  const task = Task.find(req.body.taskId);
 
-//   try {
-//     if (!task) {
-//       throw new Error('Task not found')
-//     }
-
-//     res.status(204).json({ status: 'success', message: 'deleted' });
-//   } catch (err) {}
-// };
+  try {
+    // if (!task) throw new appError('Task not found', 400);
+    const deletedTask = Task.deleteOne(req.params.id);
+    res.status(204).json({ status: 'success', message: 'deleted' });
+  } catch (err) {
+    if (err.isOperational) {
+      res
+        .status(err.statusCode)
+        .json({ status: err.status, message: err.message });
+    } else {
+      console.log(err.message);
+      res
+        .status(500)
+        .json({ status: 'error', message: 'something went wrong' });
+    }
+  }
+};

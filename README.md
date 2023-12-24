@@ -5,7 +5,12 @@
 
 ### FEATURES AND FUNCTIONALITIES
 
+###### TASKS RESOUCE
+
 - [x] CRUD operations: Implement endpoints for creating, reading, updating, and deleting tasks.
 - [ ] User Registration and Authorization: Allows users to register accounts and authorize themselves before accessing their tasks.
+- [ ] Implement advanced API features (Querying, Sorting, and Pagination)
 
--- i haven't tested recent routes in the api because my postman was acting up and i'm trying to troubleshoot it. If no progress i might just reinstall or try out insomania --
+###### USERS RESOURCE
+
+- [ ] Design and develop authentication system to allow only logged in users manage 'their' tasks
