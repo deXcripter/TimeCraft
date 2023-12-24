@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
       return this.password === val;
     },
   },
+  passwordChangedAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 // hashing the user password

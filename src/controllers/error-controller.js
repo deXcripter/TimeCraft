@@ -26,12 +26,14 @@ const globalError = (err, req, res, next) => {
     return err;
   };
 
-  const handleExistingUniqueCredentials = (err) => {
-    (err.isOperational = true),
-      (err.message = err.message),
-      (err.statusCode = err.statusCode);
+  function handleExistingUniqueCredentials(err) {
+    const { key, email } = { ...err.keyValue };
+
+    err.isOperational = true;
+    err.message = `${email} has already been used. Please choose another`;
+    err.statusCode = err.statusCode;
     return err;
-  };
+  }
 
   // production error
   const productionError = (res, err) => {
