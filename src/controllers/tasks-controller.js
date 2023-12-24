@@ -1,6 +1,7 @@
 const Task = require('../models/task-model.js');
 const appError = require('../utils/app-error.js');
 
+// needed functions
 async function handleInvalidId(req) {
   const taskId = await Task.findById(req.params.id);
   if (!taskId) throw new appError('This task does not exist', 400);
@@ -23,7 +24,6 @@ exports.createTask = async (req, res, next) => {
       data: task,
     });
   } catch (err) {
-    console.log(err.message);
     return next(new appError(`Error creating task`, 400));
   }
 };
@@ -39,11 +39,22 @@ exports.tasks = async (req, res, next) => {
 };
 
 // update task
-exports.updateTask = (req, res, next) => {
+exports.updateTask = async (req, res, next) => {
   try {
-    // handleInvalidId();
-    res.status(200).json({ status: 'success', message: 'updated' });
-  } catch (err) {}
+    await handleInvalidId(req);
+    const body = req.body.task;
+    console.log(body);
+
+    const updatedTask = await Task.findByIdAndUpdate(
+      req.params.id,
+      { task: body },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json({ status: 'success', data: updatedTask });
+  } catch (err) {
+    next(err);
+  }
 };
 
 // delete task
