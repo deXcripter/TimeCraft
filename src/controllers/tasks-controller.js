@@ -24,7 +24,7 @@ exports.createTask = async (req, res, next) => {
       data: task,
     });
   } catch (err) {
-    return next(new appError(`Error creating task`, 400));
+    return next(err);
   }
 };
 

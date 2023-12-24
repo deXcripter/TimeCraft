@@ -17,6 +17,22 @@ const globalError = (err, req, res, next) => {
     return err;
   };
 
+  const handleValidationError = (err) => {
+    err.message = err.message;
+    err.statusCode = 400;
+    err.status = 'invalid task';
+    err.isOperational = true;
+
+    return err;
+  };
+
+  const handleExistingUniqueCredentials = (err) => {
+    (err.isOperational = true),
+      (err.message = err.message),
+      (err.statusCode = err.statusCode);
+    return err;
+  };
+
   // production error
   const productionError = (res, err) => {
     if (err.isOperational) {
@@ -27,6 +43,7 @@ const globalError = (err, req, res, next) => {
         message: err.message,
       });
     } else {
+      console.log(err);
       return res
         .status(500)
         .json({ status: 'error', message: 'Something went wrong' });
@@ -38,6 +55,8 @@ const globalError = (err, req, res, next) => {
     developmentError(res, err);
   } else if (process.env.NODE_ENV === 'production') {
     if (err.name === 'CastError') err = handleCastError(err);
+    if (err.name === 'ValidationError') err = handleValidationError(err);
+    if (err.code === 11000) err = handleExistingUniqueCredentials(err);
 
     productionError(res, err);
   }

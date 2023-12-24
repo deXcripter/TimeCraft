@@ -5,6 +5,8 @@ const taskSchema = new mongoose.Schema({
     type: String,
     require: [true, 'Please enter a task'],
     trim: true,
+    minlength: 3,
+    maxlength: 300,
   },
 });
 
