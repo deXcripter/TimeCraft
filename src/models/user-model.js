@@ -42,7 +42,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// comparing user password
+// comparing user password using methods on the userSchema prototype
 userSchema.methods.comparePasswords = async function (
   trialPassword,
   storedPassword

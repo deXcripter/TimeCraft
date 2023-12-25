@@ -63,3 +63,14 @@ exports.signin = async (req, res, next) => {
     return next(err);
   }
 };
+
+exports.protection = async (req, res, next) => {
+  const [bearer, token] = `${req.headers.authorization}`.split(' ');
+  // if (bearer !== 'Bearer')
+  //   return next(new appError('Please log in as a user', 401));
+
+  if (!`${bearer}`.startsWith('Bearer') || !token)
+    return next(new appError('Please log in to access this route', 401));
+
+  next();
+};
