@@ -35,6 +35,14 @@ const globalError = (err, req, res, next) => {
     return err;
   }
 
+  function handleJsonWebTokenError(err) {
+    err.isOperational = true;
+    err.message = 'Invalid token';
+    err.statusCode = 500;
+
+    return err;
+  }
+
   // production error
   const productionError = (res, err) => {
     if (err.isOperational) {
@@ -59,6 +67,7 @@ const globalError = (err, req, res, next) => {
     if (err.name === 'CastError') err = handleCastError(err);
     if (err.name === 'ValidationError') err = handleValidationError(err);
     if (err.code === 11000) err = handleExistingUniqueCredentials(err);
+    if (err.name === 'JsonWebTokenError') err = handleJsonWebTokenError(err);
 
     productionError(res, err);
   }

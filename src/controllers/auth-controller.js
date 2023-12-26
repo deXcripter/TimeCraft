@@ -1,5 +1,6 @@
 const User = require('../models/user-model');
 const appError = require('../utils/app-error');
+const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 
 // functions
@@ -65,12 +66,26 @@ exports.signin = async (req, res, next) => {
 };
 
 exports.protection = async (req, res, next) => {
-  const [bearer, token] = `${req.headers.authorization}`.split(' ');
-  // if (bearer !== 'Bearer')
-  //   return next(new appError('Please log in as a user', 401));
+  try {
+    // check if header exists first
+    const [bearer, token] = `${req.headers.authorization}`.split(' ');
+    if (!`${bearer}`.startsWith('Bearer') || !token)
+      return next(new appError('Please log in to access this route', 401));
 
-  if (!`${bearer}`.startsWith('Bearer') || !token)
-    return next(new appError('Please log in to access this route', 401));
+    // verify if token hasn't been manupualated
+    jwt.verify(token, process.env.SECRET_KEY);
 
-  next();
+    // check if user still exists
+    const decoded = jwt.decode(token);
+    const user = await User.findById(decoded.id);
+
+    if (!user)
+      next(new appError('The user belonging to this token no longer exists'));
+
+    req.decoded = decoded;
+
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
