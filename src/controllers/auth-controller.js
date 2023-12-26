@@ -36,9 +36,7 @@ exports.signup = async (req, res, next) => {
     res.status(201).json({
       status: 'success',
       token,
-      data: {
-        user: newUser,
-      },
+      newUser,
     });
   } catch (err) {
     next(err);
@@ -82,8 +80,11 @@ exports.protection = async (req, res, next) => {
     if (!user)
       next(new appError('The user belonging to this token no longer exists'));
 
-    req.decoded = decoded;
+    // check if user has changed password since token generation
+    if (user.changedPassword(decoded.iat))
+      return next(new appError('Password changed. Please log in', 401));
 
+    req.decoded = decoded;
     next();
   } catch (err) {
     next(err);

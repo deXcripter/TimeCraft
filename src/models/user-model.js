@@ -50,6 +50,12 @@ userSchema.methods.comparePasswords = async function (
   return await bcrypt.compare(trialPassword, storedPassword);
 };
 
+// checking whether password has been changed after token has been generated
+userSchema.methods.changedPassword = function (JWTTimestamp) {
+  const toNumber = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
+  return toNumber > JWTTimestamp;
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
