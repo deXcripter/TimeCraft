@@ -11,8 +11,7 @@ const { protection } = require('../controllers/auth-controller.js');
 
 const Router = express.Router();
 
-Router.route('/:id').get(protection, tasks).post(createTask);
-
+Router.route('/userId').get(protection, tasks).post(protection, createTask);
 Router.route('/userId/:id').delete(deleteTask).patch(updateTask);
 
 module.exports = Router;

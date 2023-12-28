@@ -16,7 +16,7 @@ exports.createTask = async (req, res, next) => {
       next(new appError('Please enter a task', 400));
     }
 
-    const body = { task: req.body.task };
+    const body = { task: req.body.task, userID: req.decoded.id };
     const task = await Task.create(body);
 
     res.status(201).json({
@@ -31,7 +31,7 @@ exports.createTask = async (req, res, next) => {
 // find task
 exports.tasks = async (req, res, next) => {
   try {
-    const task = await Task.find();
+    const task = await Task.find({ userID: req.decoded.id });
     res.status(200).json({ status: 'success', data: task });
   } catch (err) {
     return next(err);
