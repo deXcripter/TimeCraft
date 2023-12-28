@@ -32,7 +32,7 @@ exports.createTask = async (req, res, next) => {
 exports.tasks = async (req, res, next) => {
   try {
     const task = await Task.find({ userID: req.decoded.id });
-    res.status(200).json({ status: 'success', data: task });
+    return res.status(200).json({ status: 'success', data: task });
   } catch (err) {
     return next(err);
   }

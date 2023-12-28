@@ -11,6 +11,7 @@ const taskSchema = new mongoose.Schema({
   userID: {
     type: String,
     required: [true, 'A task must belong to a user'],
+    select: false,
   },
 });
 

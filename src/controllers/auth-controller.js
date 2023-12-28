@@ -78,7 +78,9 @@ exports.protection = async (req, res, next) => {
     const user = await User.findById(decoded.id);
 
     if (!user)
-      next(new appError('The user belonging to this token no longer exists'));
+      return next(
+        new appError('The user belonging to this token no longer exists')
+      );
 
     // check if user has changed password since token generation
     if (user.changedPassword(decoded.iat))
@@ -87,6 +89,6 @@ exports.protection = async (req, res, next) => {
     req.decoded = decoded;
     next();
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
