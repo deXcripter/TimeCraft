@@ -2,6 +2,7 @@ const User = require('../models/user-model');
 const appError = require('../utils/app-error');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 // functions
 const signToken = (id) => {
@@ -90,5 +91,25 @@ exports.protection = async (req, res, next) => {
     next();
   } catch (err) {
     return next(err);
+  }
+};
+
+exports.forgotPassword = async (req, res, next) => {
+  try {
+    if (!req.body.email)
+      return next(new appError('Please enter your email', 400));
+
+    const user = await User.findOne({ email: req.body.email })?.select(
+      'password'
+    );
+    if (!user) return next(new appError('No account with this email', 400));
+
+    user.resetPasswordTokenFn();
+    user.save({ validateBeforeSave: false });
+    res.status(200).json({ status: 'success' });
+
+    // user
+  } catch (err) {
+    next(err);
   }
 };
