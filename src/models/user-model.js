@@ -45,6 +45,13 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now() - 2500;
+  next();
+});
+
 // comparing user password using methods on the userSchema prototype
 userSchema.methods.comparePasswords = async function (
   trialPassword,
@@ -61,16 +68,15 @@ userSchema.methods.changedPassword = function (JWTTimestamp) {
 
 // send token for forgotten password
 userSchema.methods.resetPasswordTokenFn = function () {
-  const hashedToken = crypto.randomBytes(32).toString('hex');
+  const token = crypto.randomBytes(32).toString('hex');
   this.passwordResetToken = crypto
     .createHash('sha256')
     .update(hashedToken)
     .digest('hex');
-  console.log(this.passwordResetToken, { hashedToken });
   this.passwordResetExpires = Date.now();
 
   // return
-  return hashedToken;
+  return token;
 };
 
 const User = mongoose.model('User', userSchema);

@@ -11,6 +11,22 @@ const signToken = (id) => {
   });
 };
 
+const sendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  const cookieDetails = {
+    secure: true,
+  };
+
+  res.cookie = ('jwt', token, cookieDetails);
+
+  res.status(statusCode).json({
+    status: 'success',
+    user,
+    token,
+  });
+};
+
 // controllers
 exports.signup = async (req, res, next) => {
   try {
@@ -27,20 +43,14 @@ exports.signup = async (req, res, next) => {
 
     const newUser = await User.create(userDetails);
 
-    if (!newUser)
-      return next(
-        new appError('An error occured while creating the user', 400)
-      );
+    if (!newUser) {
+      throw new appError('An error occured while creating the user', 400);
+    }
 
-    const token = signToken(newUser._id);
-
-    res.status(201).json({
-      status: 'success',
-      token,
-      newUser,
-    });
+    sendToken(newUser, 201, res);
   } catch (err) {
-    next(err);
+    await User.findOneAndDelete({ email: req.body.email });
+    return next(err);
   }
 };
 
@@ -96,20 +106,31 @@ exports.protection = async (req, res, next) => {
 
 exports.forgotPassword = async (req, res, next) => {
   try {
-    if (!req.body.email)
-      return next(new appError('Please enter your email', 400));
+    const user = await User.findOne({ email: req.body.email });
 
-    const user = await User.findOne({ email: req.body.email })?.select(
-      'password'
-    );
-    if (!user) return next(new appError('No account with this email', 400));
+    if (!user)
+      return next(
+        new appError('There is no user with this email address', 404)
+      );
 
-    user.resetPasswordTokenFn();
-    user.save({ validateBeforeSave: false });
-    res.status(200).json({ status: 'success' });
+    const resetToken = user.resetPasswordTokenFn();
+    await user.save({ validateBeforeSave: false });
+
+    const resetUrl = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/resetPassword/${resetToken}`;
+
+    const message = `Forgotten password? Submit a fetch requrest with your new password and password confirm to: ${resetUrl}.\nIf you didn't initiate this, please feel free to ignore this email`;
+
+    res.status(200).json({
+      status: 'success',
+      message,
+    });
 
     // user
   } catch (err) {
     next(err);
   }
 };
+
+exports.resetPassword = async (req, res, next) => {};

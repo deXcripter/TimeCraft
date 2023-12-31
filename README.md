@@ -19,4 +19,4 @@
 
 ###### PRODUCTION
 
-- [ ] Depl33oy to any API hosting service (AWS or Heroku)
+- [ ] Deploy to any API hosting service (AWS or Heroku)

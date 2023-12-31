@@ -43,7 +43,6 @@ exports.updateTask = async (req, res, next) => {
   try {
     await handleInvalidId(req);
     const body = req.body.task;
-    console.log(body);
 
     const updatedTask = await Task.findByIdAndUpdate(
       req.params.id,
@@ -59,11 +58,11 @@ exports.updateTask = async (req, res, next) => {
 
 // delete task
 exports.deleteTask = async (req, res, next) => {
-  const task = await Task.find(req.body.taskId);
-
   try {
     await handleInvalidId(req);
-    await Task.findOneAndDelete(req.params.id);
+    const tasks = await Task.findOneAndDelete(req.params.id);
+    tasks.save({ runValidators: true });
+
     res.status(204).json({ status: 'success', message: 'deleted' });
   } catch (err) {
     next(err);
