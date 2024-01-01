@@ -3,6 +3,7 @@ const appError = require('../utils/app-error');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const { sendEmail } = require('../utils/emial');
 
 // functions
 const signToken = (id) => {
@@ -15,8 +16,12 @@ const sendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
   const cookieDetails = {
-    secure: true,
+    expires: new Date(Date.now() + 60 * 60 * 1000 * 24 * 90),
+    secure: false,
+    httpOnly: true,
   };
+
+  if (process.env.NODE_ENV === 'production') cookieDetails.secure = true;
 
   res.cookie = ('jwt', token, cookieDetails);
 
@@ -122,9 +127,26 @@ exports.forgotPassword = async (req, res, next) => {
 
     const message = `Forgotten password? Submit a fetch requrest with your new password and password confirm to: ${resetUrl}.\nIf you didn't initiate this, please feel free to ignore this email`;
 
+    try {
+      await sendEmail({
+        email: req.body.email,
+        subject: 'Valid for 10 minutes',
+        message,
+      });
+    } catch (err) {
+      // log the error and reset everything
+      console.log(err);
+      user.passwordResetToken = undefined;
+      user.passwordResetExpires = undefined;
+
+      return next(
+        new appError('Error sending emial, please try again later', 500)
+      );
+    }
+
     res.status(200).json({
       status: 'success',
-      message,
+      message: 'please check your email',
     });
 
     // user
@@ -145,10 +167,12 @@ exports.resetPassword = async (req, res, next) => {
       passwordResetExpires: { $gt: Date.now() },
     });
 
+    console.log(user);
+
+    if (!user) return next(new appError('Token is invalid or Expired', 400));
+
     this.password = req.body.password;
     this.passwordConfirm = req.body.passwordConfirm;
-
-    if (!user) return next(new AppError('Token is invalid or Expired', 400));
 
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;

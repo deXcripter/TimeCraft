@@ -16,7 +16,7 @@ Router.post('/signup', signup);
 Router.post('/signin', signin);
 Router.post('/forgotpassword', forgotPassword);
 // Router.post('/updatePassword', updatePassword);
-Router.post('resetPassword/:token', resetPassword);
+Router.post('/resetpassword/:token', resetPassword);
 
 Router.route('/').get(getAllUsers);
 

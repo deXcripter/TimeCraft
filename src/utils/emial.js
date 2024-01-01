@@ -2,11 +2,13 @@ const nodemailer = require('nodemailer');
 
 exports.sendEmail = async (options) => {
   // create transporter
-  const transporter = nodemailer.createTestAccount({
-    service: 'Gmail',
+  const transporter = nodemailer.createTransport({
+    // service: 'Gmail',
+    host: process.env.HOST,
+    port: process.env.PORT,
     auth: {
-      user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD,
+      user: process.env.NODEMAILER_USERNAME,
+      pass: process.env.NODEMAILER_PASSWORD,
     },
   });
 
@@ -17,5 +19,5 @@ exports.sendEmail = async (options) => {
     text: options.message,
   };
 
-  await transporter.sendEmail(details);
+  await transporter.sendMail(details);
 };
