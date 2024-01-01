@@ -5,13 +5,19 @@ const {
   signup,
   signin,
   forgotPassword,
+  resetPassword,
 } = require('../controllers/auth-controller');
-const {} = require('../controllers/user-controller');
+const {
+  getAllUsers,
+  updatePassword,
+} = require('../controllers/user-controller');
 
 Router.post('/signup', signup);
 Router.post('/signin', signin);
 Router.post('/forgotpassword', forgotPassword);
+// Router.post('/updatePassword', updatePassword);
+Router.post('resetPassword/:token', resetPassword);
 
-Router.route('/').get();
+Router.route('/').get(getAllUsers);
 
 module.exports = Router;

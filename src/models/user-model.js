@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     unique: [true, 'Email already taken, please sign login or use a new email'],
     trim: true,
     validate: validator.isEmail,
-    required: [false, 'Please provide your email to save your tasks'],
+    required: [true, 'Please provide your email to save your tasks'],
   },
   password: {
     type: String,
@@ -32,9 +32,15 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: {
     type: Date,
     default: Date.now(),
+    select: false,
   },
-  passwordResetToken: String,
-  passwordResetExpires: Date,
+  passwordResetToken: { type: String, select: false },
+  passwordResetExpires: { type: Date, select: false },
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
 });
 
 // hashing the user password
