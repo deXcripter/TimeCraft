@@ -162,9 +162,21 @@ exports.resetPassword = async (req, res, next) => {
       .update(req.params.token)
       .digest('hex');
 
+    // const user = await User.findOne({
+    //   passwordResetToken: token,
+    //   passwordResetExpires: { $gt: Date.now() },
+    // });
+    // const user = await User.findOne({
+    //   passwordResetToken: token,
+    //   passwordResetExpires: {
+    //     $gte: Date.now(),
+    //   },
+    // });
     const user = await User.findOne({
       passwordResetToken: token,
-      passwordResetExpires: { $gt: Date.now() },
+      passwordResetExpires: {
+        $gte: Date.now(),
+      },
     });
 
     console.log(user);
@@ -181,7 +193,7 @@ exports.resetPassword = async (req, res, next) => {
 
     await user.save();
 
-    res.status(2010).json({
+    res.status(201).json({
       status: 'success',
       data: {
         user,
