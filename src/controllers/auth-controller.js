@@ -148,8 +148,6 @@ exports.forgotPassword = async (req, res, next) => {
       status: 'success',
       message: 'please check your email',
     });
-
-    // user
   } catch (err) {
     next(err);
   }
@@ -162,16 +160,6 @@ exports.resetPassword = async (req, res, next) => {
       .update(req.params.token)
       .digest('hex');
 
-    // const user = await User.findOne({
-    //   passwordResetToken: token,
-    //   passwordResetExpires: { $gt: Date.now() },
-    // });
-    // const user = await User.findOne({
-    //   passwordResetToken: token,
-    //   passwordResetExpires: {
-    //     $gte: Date.now(),
-    //   },
-    // });
     const user = await User.findOne({
       passwordResetToken: token,
       passwordResetExpires: {
@@ -179,12 +167,7 @@ exports.resetPassword = async (req, res, next) => {
       },
     });
 
-    console.log(user);
-
     if (!user) return next(new appError('Token is invalid or Expired', 400));
-
-    this.password = req.body.password;
-    this.passwordConfirm = req.body.passwordConfirm;
 
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;

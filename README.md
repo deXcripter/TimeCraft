@@ -14,7 +14,7 @@
 ###### USERS RESOURCE
 
 - [x] Design and develop authentication system to allow only logged in users manage 'their' tasks.
-- [ ] Implement "Forgot password" functionality" to allow users reset their password.
+- [x] Implement "Forgot password" functionality" to allow users reset their password.
 - [ ] Allow a User to be able to delete his account.
 
 ###### PRODUCTION

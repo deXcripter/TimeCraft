@@ -32,7 +32,9 @@ exports.createTask = async (req, res, next) => {
 exports.tasks = async (req, res, next) => {
   try {
     const task = await Task.find({ userID: req.decoded.id });
-    return res.status(200).json({ status: 'success', data: task });
+    return res
+      .status(200)
+      .json({ status: 'success', length: task?.length, data: task });
   } catch (err) {
     return next(err);
   }
@@ -60,8 +62,8 @@ exports.updateTask = async (req, res, next) => {
 exports.deleteTask = async (req, res, next) => {
   try {
     await handleInvalidId(req);
-    const tasks = await Task.findOneAndDelete(req.params.id);
-    tasks.save({ runValidators: true });
+    console.log(req.params.id);
+    await Task.findByIdAndDelete(req.params.id);
 
     res.status(204).json({ status: 'success', message: 'deleted' });
   } catch (err) {

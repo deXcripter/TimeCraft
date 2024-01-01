@@ -68,6 +68,7 @@ userSchema.methods.comparePasswords = async function (
 
 // checking whether password has been changed after token has been generated
 userSchema.methods.changedPassword = function (JWTTimestamp) {
+  if (!this.passwordChangedAt) return;
   const toNumber = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
   return toNumber > JWTTimestamp;
 };
