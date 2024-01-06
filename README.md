@@ -5,6 +5,10 @@
 
 ### FEATURES AND FUNCTIONALITIES
 
+###### STATUS
+
+- [ ] Completed
+
 ###### TASKS RESOUCE
 
 - [x] CRUD operations: Implement endpoints for creating, reading, updating, and deleting tasks.
