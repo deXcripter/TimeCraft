@@ -49,12 +49,14 @@ exports.signup = async (req, res, next) => {
     const newUser = await User.create(userDetails);
 
     if (!newUser) {
-      throw new appError('An error occured while creating the user', 400);
+      return next(
+        new appError('An error occured while creating the user', 400)
+      );
     }
 
     sendToken(newUser, 201, res);
   } catch (err) {
-    await User.findOneAndDelete({ email: req.body.email });
+    // await User.findOneAndDelete({ email: req.body.email });
     return next(err);
   }
 };
@@ -143,6 +145,7 @@ exports.forgotPassword = async (req, res, next) => {
       console.log(err);
       user.passwordResetToken = undefined;
       user.passwordResetExpires = undefined;
+      user.save();
 
       return next(
         new appError('Error sending emial, please try again later', 500)
