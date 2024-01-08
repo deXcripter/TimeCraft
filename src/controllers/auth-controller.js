@@ -3,7 +3,7 @@ const appError = require('../utils/app-error');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const { sendEmail } = require('../utils/emial');
+const { sendEmail } = require('../utils/email');
 
 // functions
 const signToken = (id) => {
@@ -41,7 +41,7 @@ exports.signup = async (req, res, next) => {
     }
     const userDetails = {
       name: req.body.name,
-      email: req.body.email || null,
+      email: req.body.email,
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
     };
@@ -67,10 +67,15 @@ exports.signin = async (req, res, next) => {
       next(new appError('Please input your email and password', 400));
 
     const user = await User.findOne({ email }).select('password');
-    if (!user) return next(new appError('No user exist with this email', 404));
 
-    const bool = await user.comparePasswords(password, user.password);
-    if (!bool) return next(new appError('Incorrect password', 403));
+    // remember to test this later //
+    if (!user || !(await user.comparePasswords(password, user.password))) {
+      return next(new appError('Invalid credentials', 400));
+    }
+
+    // if (!user) return next(new appError('No user exist with this email', 404));
+    // const bool = await user.comparePasswords(password, user.password);
+    // if (!bool) return next(new appError('Incorrect password', 403));
 
     const token = signToken(user._id);
     res.status(200).json({ status: 'success', token });

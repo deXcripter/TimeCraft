@@ -9,7 +9,7 @@
 
 - [ ] Completed
 
-###### TASKS RESOUCE
+###### TASKS RESOURCE
 
 - [x] CRUD operations: Implement endpoints for creating, reading, updating, and deleting tasks.
 - [x] User Registration and Authorization: Allows users to register accounts and authorize themselves before accessing their tasks.
