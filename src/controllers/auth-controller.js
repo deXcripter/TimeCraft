@@ -56,7 +56,6 @@ exports.signup = async (req, res, next) => {
 
     sendToken(newUser, 201, res);
   } catch (err) {
-    // await User.findOneAndDelete({ email: req.body.email });
     return next(err);
   }
 };
@@ -91,10 +90,16 @@ exports.protection = async (req, res, next) => {
     // check if header exists first
     const [bearer, token] = `${req.headers.authorization}`.split(' ');
     if (!`${bearer}`.startsWith('Bearer') || !token)
-      return next(new appError('Please log in to access this route', 401));
+      return next(new appError('Please login to perform this operation', 401));
 
     // verify if token hasn't been manupualated
-    jwt.verify(token, process.env.SECRET_KEY);
+    try {
+      jwt.verify(token, process.env.SECRET_KEY);
+    } catch (err) {
+      // if (err.message =)
+      console.log(err.name);
+      return next(err);
+    }
 
     // check if user still exists
     const decoded = jwt.decode(token);

@@ -37,7 +37,7 @@ const globalError = (err, req, res, next) => {
 
   function handleJsonWebTokenError(err) {
     err.isOperational = true;
-    err.message = 'Invalid token';
+    err.message = 'You are not logged in'; // invalid token
     err.statusCode = 500;
 
     return err;

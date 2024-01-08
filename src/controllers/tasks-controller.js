@@ -4,7 +4,7 @@ const appError = require('../utils/app-error.js');
 // needed functions
 async function handleInvalidId(req) {
   const taskId = await Task.findById(req.params.id);
-  if (!taskId) throw new appError('This task does not exist', 400);
+  if (!taskId) return true;
 
   return;
 }
@@ -43,7 +43,9 @@ exports.tasks = async (req, res, next) => {
 // update task
 exports.updateTask = async (req, res, next) => {
   try {
-    await handleInvalidId(req);
+    if (await handleInvalidId(req))
+      return next(new appError('Invalid taskId', 400));
+
     const body = req.body.task;
 
     const updatedTask = await Task.findByIdAndUpdate(
@@ -61,8 +63,9 @@ exports.updateTask = async (req, res, next) => {
 // delete task
 exports.deleteTask = async (req, res, next) => {
   try {
-    await handleInvalidId(req);
-    console.log(req.params.id);
+    if (await handleInvalidId(req))
+      return next(new appError('Invalid taskId', 400));
+
     await Task.findByIdAndDelete(req.params.id);
 
     res.status(204).json({ status: 'success', message: 'deleted' });
