@@ -1,23 +1,18 @@
+import { useState } from "react";
+import { Body } from "./Body";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+
 export default function App() {
-  return (
-    <div className="bg-[#EAD196] h-screen text-[#F3EDC8]">
-      <Header />
-    </div>
-  );
-}
+  const [login, setLogin] = useState(false);
 
-function Header() {
   return (
-    <div>
-      <Logo />
-    </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="f items-center flex text-xl py-3 bg-[#BF3131]">
-      <h1 className="font-semibold ml-1 ">TimeCraft💡</h1>
+    <div className="bg-[#F6F4EB] h-screen text-slate-900 grid grid-rows-[auto_1fr_.08fr] ">
+      <Header setLogin={setLogin} />
+      <main className="overflow-scroll">
+        <Body />
+      </main>
+      <Footer />
     </div>
   );
 }
