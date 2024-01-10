@@ -16,7 +16,11 @@ exports.createTask = async (req, res, next) => {
       next(new appError('Please enter a task', 400));
     }
 
-    const body = { task: req.body.task, userID: req.decoded.id };
+    const body = {
+      task: req.body.task,
+      priority: req.body.priority,
+      userID: req.decoded.id,
+    };
     const task = await Task.create(body);
 
     res.status(201).json({
