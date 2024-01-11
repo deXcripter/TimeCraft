@@ -5,9 +5,18 @@ export default function Body() {
       <AuthBox>
         <Signup />
       </AuthBox>
-
-      {/* <Signup/> */}
+      {/* <AuthBox>
+        <Login />
+      </AuthBox> */}
     </section>
+  );
+}
+
+function AuthBox({ children }) {
+  return (
+    <div className="bg-slate-50 block h-fit w-min px-5 py-2 my-32 mx-auto text-center rounded-md shadow-lg drop-shadow-lg shadow-slate-600 border-blue-30">
+      {children}
+    </div>
   );
 }
 
@@ -41,14 +50,6 @@ function Login() {
         Not a member? <a href="#">Sign up</a>
       </p>
     </form>
-  );
-}
-
-function AuthBox({ children }) {
-  return (
-    <div className="bg-slate-50 block h-fit w-min px-5 py-2 my-32 mx-auto text-center rounded-md shadow-lg drop-shadow-lg shadow-slate-600 border-blue-30">
-      {children}
-    </div>
   );
 }
 
