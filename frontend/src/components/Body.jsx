@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 export default function Body() {
   return (
-    <section className="bg-slate-200 w-full">
+    <section className="bg-slate-200 w-full ">
       <AuthBox>
         <Signup />
       </AuthBox>
-      {/* <AuthBox>
+      <AuthBox>
         <Login />
-      </AuthBox> */}
+      </AuthBox>
     </section>
   );
 }
@@ -31,18 +31,18 @@ function Login() {
         <input
           placeholder=" Enter your email"
           type="email"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1"
+          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
           required
         />
 
         <input
           placeholder=" Enter your password"
           type="password"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1"
+          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
           required
         />
 
-        <button className="bg-blue-500 rounded-sm px-2 w-full text-slate-100 h-9">
+        <button className="bg-blue-500 rounded-sm px-2 w-full text-slate-100 h-9 focus:bg-blue-400">
           Login
         </button>
       </div>
@@ -64,28 +64,28 @@ function Signup() {
         <input
           type="text"
           placeholder=" Enter your name"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1"
+          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
           required
         />
         <input
           type="email"
           placeholder=" Enter your email"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1"
+          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
           required
         />
         <input
           type="password"
           placeholder=" Enter your password"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1"
+          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
           required
         />
         <input
           type="password"
           placeholder=" Confirm your password"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1"
+          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
           required
         />
-        <button className="bg-blue-500 rounded-sm px-2 w-full text-slate-100 h-9 ">
+        <button className="bg-blue-500 rounded-sm px-2 w-full text-slate-100 h-9  focus:bg-blue-400">
           Signup
         </button>
       </div>
