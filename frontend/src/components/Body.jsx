@@ -1,5 +1,19 @@
 import { Signup } from './Signup';
 import Login from './Login';
+import { useState } from 'react';
+
+const initialState = [
+  {
+    title: 'Cooking',
+    description: 'Boil the rice',
+    due: '20 January 2024',
+    priority: 'high',
+    tags: 'Food',
+    completed: false,
+  },
+];
+
+import styles from './Body.module.css';
 
 /* eslint-disable react/prop-types */
 export default function Body() {
@@ -8,9 +22,8 @@ export default function Body() {
       {/* <AuthBox>
         <Signup />
       </AuthBox> */}
-      <TaskBody>
-        <CreateTask />
-      </TaskBody>
+      <Controller />
+      <Tasks />
     </section>
   );
 }
@@ -23,19 +36,43 @@ function AuthBox({ children }) {
   );
 }
 
-function TaskBody({ children }) {
-  return <div className="h-full bg-slate-300">{children}</div>;
-}
-
-function CreateTask() {
+function Controller() {
   return (
-    <div className="flex justify-evenly">
+    <div className="flex justify-center p-4 space-x-4">
       <button className="bg-blue-400 px-3 py-1 rounded-xl shadow-md shadow-neutral-600 hover:drop-shadow-xl">
         Create new task
       </button>
-      <select>
-        <option>Hi</option>
+      <select className="px-3 py-1 rounded-xl shadow-md shadow-neutral-600 hover:drop-shadow-xl">
+        <option>Sort by</option>
+        <option>Priorty</option>
+        <option>Date added</option>
       </select>
     </div>
+  );
+}
+
+function Tasks() {
+  // fetch the actual tasks here
+  const [tasks, setTasks] = useState(initialState);
+
+  return (
+    <div className={styles.tasks}>
+      <ul className="space-y-3 rounded-lg  bg-blue-300 overflow-scroll">
+        {tasks.map((task) => (
+          <ListTasks task={task} key={crypto.randomUUID()} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ListTasks({ task }) {
+  return (
+    <li className="overflow-scroll rounded-md px-5 h-20 bg-blue-100 flex items-center">
+      <p>
+        {task.completed} {task.description}
+      </p>
+      <hr className="mt-2"></hr>
+    </li>
   );
 }
