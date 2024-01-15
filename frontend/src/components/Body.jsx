@@ -1,13 +1,16 @@
+import { Signup } from './Signup';
+import Login from './Login';
+
 /* eslint-disable react/prop-types */
 export default function Body() {
   return (
-    <section className="bg-slate-200 w-full ">
-      <AuthBox>
+    <section className=" w-full overflow-scroll">
+      {/* <AuthBox>
         <Signup />
-      </AuthBox>
-      <AuthBox>
-        <Login />
-      </AuthBox>
+      </AuthBox> */}
+      <TaskBody>
+        <CreateTask />
+      </TaskBody>
     </section>
   );
 }
@@ -20,78 +23,19 @@ function AuthBox({ children }) {
   );
 }
 
-function Login() {
-  return (
-    <form className="space-y-6 ">
-      <div>
-        <h1 className="text-xl font-bold">Welcome back!</h1>
-        <p>Log in to access your account</p>
-      </div>
-      <div className="space-y-3">
-        <input
-          placeholder=" Enter your email"
-          type="email"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
-          required
-        />
-
-        <input
-          placeholder=" Enter your password"
-          type="password"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
-          required
-        />
-
-        <button className="bg-blue-500 rounded-sm px-2 w-full text-slate-100 h-9 focus:bg-blue-400">
-          Login
-        </button>
-      </div>
-      <p className="pb-2">
-        Not a member? <a href="#">Sign up</a>
-      </p>
-    </form>
-  );
+function TaskBody({ children }) {
+  return <div className="h-full bg-slate-300">{children}</div>;
 }
 
-function Signup() {
+function CreateTask() {
   return (
-    <form className="space-y-6">
-      <div>
-        <h1 className="text-xl font-bold">Join us today! </h1>
-        <p>Sign up now to become a member</p>
-      </div>
-      <div className="space-y-3">
-        <input
-          type="text"
-          placeholder=" Enter your name"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
-          required
-        />
-        <input
-          type="email"
-          placeholder=" Enter your email"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
-          required
-        />
-        <input
-          type="password"
-          placeholder=" Enter your password"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
-          required
-        />
-        <input
-          type="password"
-          placeholder=" Confirm your password"
-          className="rounded-sm h-9 outline-none outline-blue-200 outline-1 focus:bg-slate-200"
-          required
-        />
-        <button className="bg-blue-500 rounded-sm px-2 w-full text-slate-100 h-9  focus:bg-blue-400">
-          Signup
-        </button>
-      </div>
-      <p className="pb-2">
-        Already a member? <a href="#">Login</a>
-      </p>
-    </form>
+    <div className="flex justify-evenly">
+      <button className="bg-blue-400 px-3 py-1 rounded-xl shadow-md shadow-neutral-600 hover:drop-shadow-xl">
+        Create new task
+      </button>
+      <select>
+        <option>Hi</option>
+      </select>
+    </div>
   );
 }

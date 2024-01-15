@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.logo {
+  font-family: 'Rubik', sans-serif;
+  font-size: x-large;
+  letter-spacing: 2px;
+}
+
+/* text-xl font-bold justify-start tracking-wider font- */
