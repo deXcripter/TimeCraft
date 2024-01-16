@@ -106,7 +106,10 @@ function ListTasks({ task }) {
         <div>{convertDay(day)}</div>
         <div className="text-xl">{date}</div>
       </div>
-      <div className="col-span-1 bg-green-500">Other details</div>
+      <div className="px-7 flex align-top">
+        <img src="../../public/description.svg" className="h-5" />
+        <p className="">{task.description}</p>
+      </div>
     </li>
   );
 }
