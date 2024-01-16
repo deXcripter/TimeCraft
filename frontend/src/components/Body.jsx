@@ -2,17 +2,6 @@ import { Signup } from './Signup';
 import Login from './Login';
 import { useState } from 'react';
 
-const initialState = [
-  {
-    title: 'Cooking',
-    description: 'Boil the rice',
-    due: '20 January 2024',
-    priority: 'high',
-    tags: 'Food',
-    completed: false,
-  },
-];
-
 import styles from './Body.module.css';
 
 /* eslint-disable react/prop-types */
@@ -51,6 +40,33 @@ function Controller() {
   );
 }
 
+const initialState = [
+  {
+    title: 'Cooking',
+    description: 'Boil the rice',
+    date: '2024-04-23',
+    priority: 'high',
+    tags: 'Food',
+    completed: false,
+  },
+  {
+    title: 'Cooking',
+    description: 'Cook the beans',
+    date: '2024-04-24',
+    priority: 'medium',
+    tags: 'Food',
+    completed: false,
+  },
+  {
+    title: 'Washing',
+    description: 'Wash the plates',
+    date: '2024-04-28',
+    priority: 'low',
+    tags: 'Food',
+    completed: false,
+  },
+];
+
 function Tasks() {
   // fetch the actual tasks here
   const [tasks, setTasks] = useState(initialState);
@@ -67,12 +83,30 @@ function Tasks() {
 }
 
 function ListTasks({ task }) {
+  const newDate = new Date(task.date);
+  const day = newDate.getDay();
+  const date = newDate.getDate();
+  console.log(newDate, day, date);
+
+  function convertDay(enteredDate) {
+    if (enteredDate > 6) return 'invalid date';
+    if (enteredDate === 6) return 'Sat';
+    if (enteredDate === 5) return 'Fri';
+    if (enteredDate === 4) return 'Thu';
+    if (enteredDate === 3) return 'Wed';
+    if (enteredDate === 2) return 'Tue';
+    if (enteredDate === 1) return 'Mon';
+    if (enteredDate === 0) return 'Sun';
+    else return 'Invald date';
+  }
+
   return (
-    <li className="overflow-scroll rounded-md px-5 h-20 bg-blue-100 flex items-center">
-      <p>
-        {task.completed} {task.description}
-      </p>
-      <hr className="mt-2"></hr>
+    <li className="overflow-scroll rounded-md px-5 h-auto bg-blue-100 text-left grid grid-cols-[50px_auto] items-center">
+      <div className="text-center">
+        <div>{convertDay(day)}</div>
+        <div className="text-xl">{date}</div>
+      </div>
+      <div className="col-span-1 bg-green-500">Other details</div>
     </li>
   );
 }
