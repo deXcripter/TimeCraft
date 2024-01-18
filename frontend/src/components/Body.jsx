@@ -1,5 +1,5 @@
-import { Signup } from './Signup';
-import Login from './Login';
+// import { Signup } from './Signup';
+// import Login from './Login';
 import { useState } from 'react';
 
 import styles from './Body.module.css';
@@ -55,6 +55,39 @@ const initialState = [
     date: '2024-04-24',
     priority: 'medium',
     tags: 'Food',
+    completed: true,
+  },
+  {
+    title: 'Washing',
+    description:
+      'After school,empty the waste bin, clean the floors, clear the cobwebs. Prepare food for siblings, code a little, then code some more after that',
+    priority: 'low',
+    date: '2024-04-2',
+    tags: 'Food',
+    completed: true,
+  },
+  {
+    title: 'Cooking',
+    description: 'Cook the beans',
+    date: '2024-04-24',
+    priority: 'medium',
+    tags: 'Food',
+    completed: false,
+  },
+  {
+    title: 'Washing',
+    description: 'Wash the plates',
+    date: '2024-04-28',
+    priority: 'low',
+    tags: 'Food',
+    completed: true,
+  },
+  {
+    title: 'Cooking',
+    description: 'Cook the beans',
+    date: '2024-04-24',
+    priority: 'medium',
+    tags: 'Food',
     completed: false,
   },
   {
@@ -83,10 +116,11 @@ function Tasks() {
 }
 
 function ListTasks({ task }) {
+  const [radio, setradio] = useState(true);
+
   const newDate = new Date(task.date);
   const day = newDate.getDay();
   const date = newDate.getDate();
-  console.log(newDate, day, date);
 
   function convertDay(enteredDate) {
     if (enteredDate > 6) return 'invalid date';
@@ -101,15 +135,15 @@ function ListTasks({ task }) {
   }
 
   return (
-    <li className="overflow-scroll rounded-md px-5 h-auto bg-blue-100 text-left grid grid-cols-[50px_auto] items-center">
-      <div className="text-center">
+    <li className="overflow-scroll rounded-md px-5 h-auto bg-blue-100 text-left grid grid-cols-[50px_auto_100px] items-center">
+      <div className="text-center h-auto">
         <div>{convertDay(day)}</div>
         <div className="text-xl">{date}</div>
       </div>
-      <div className="px-7 flex align-top">
-        <img src="../../public/description.svg" className="h-5" />
-        <p className="">{task.description}</p>
+      <div className="px-7 flex align-top h-auto">
+        <p className="text-lg">{task.description}</p>
       </div>
+      {task.completed && <div className="">Completed</div>}
     </li>
   );
 }
