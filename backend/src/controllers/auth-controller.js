@@ -74,10 +74,6 @@ exports.signin = async (req, res, next) => {
       return next(new appError('Invalid credentials', 400));
     }
 
-    // if (!user) return next(new appError('No user exist with this email', 404));
-    // const bool = await user.comparePasswords(password, user.password);
-    // if (!bool) return next(new appError('Incorrect password', 403));
-
     const token = signToken(user._id);
     res.status(200).json({ status: 'success', token });
   } catch (err) {
