@@ -1,6 +1,7 @@
 // import { Signup } from './Signup';
 // import Login from './Login';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import styles from './Body.module.css';
 
@@ -40,6 +41,36 @@ function Controller() {
   );
 }
 
+function Tasks() {
+  // fetch the actual tasks here
+  const [tasks, setTasks] = useState(initialState);
+
+  // useEffect(() => {
+  //   async function fetchTasks() {
+  //     const userId = '659bf61557bf80a9f0fb7536';
+  //     try {
+  //       const res = await axios.get(`http://localhost:2525/api/v1/tasks/`);
+  //       setTasks(res.data.data);
+  //     } catch (err) {
+  //       console.log(err.message);
+  //     }
+  //   }
+
+  //   fetchTasks();
+  // }, []);
+
+  return (
+    <div className={styles.tasks}>
+      <ul className="space-y-3 rounded-lg bg-blue-300 overflow-scroll">
+        {tasks.map((task) => (
+          <ListTasks task={task} key={crypto.randomUUID()} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// manual state
 const initialState = [
   {
     title: 'Cooking',
@@ -100,21 +131,6 @@ const initialState = [
   },
 ];
 
-function Tasks() {
-  // fetch the actual tasks here
-  const [tasks, setTasks] = useState(initialState);
-
-  return (
-    <div className={styles.tasks}>
-      <ul className="space-y-3 rounded-lg  bg-blue-300 overflow-scroll">
-        {tasks.map((task) => (
-          <ListTasks task={task} key={crypto.randomUUID()} />
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 function ListTasks({ task }) {
   const [radio, setradio] = useState(true);
 
@@ -135,7 +151,7 @@ function ListTasks({ task }) {
   }
 
   return (
-    <li className="overflow-scroll rounded-md px-5 h-auto bg-blue-100 text-left grid grid-cols-[50px_auto_100px] items-center">
+    <li className="overflow-scroll rounded-md px-5 h-auto bg-blue-50 text-left grid grid-cols-[50px_auto_100px] items-center">
       <div className="text-center h-auto">
         <div>{convertDay(day)}</div>
         <div className="text-xl">{date}</div>
