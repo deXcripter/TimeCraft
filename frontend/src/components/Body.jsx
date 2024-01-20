@@ -1,5 +1,5 @@
-// import { Signup } from './Signup';
-// import Login from './Login';
+import Signup from './Signup';
+import Login from './Login';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -8,19 +8,11 @@ import styles from './Body.module.css';
 /* eslint-disable react/prop-types */
 export default function Body() {
   return (
-    <section className=" w-full overflow-scroll">
+    <section className=" w-full bg-gray-100 overflow-scroll">
       <Controller />
       {/* <Tasks /> */}
-      <CreateTask />
+      <Signup />
     </section>
-  );
-}
-
-function AuthBox({ children }) {
-  return (
-    <div className="bg-slate-50 block h-fit w-min px-5 py-2 my-32 mx-auto text-center rounded-md shadow-lg drop-shadow-lg shadow-slate-600 border-blue-30">
-      {children}
-    </div>
   );
 }
 
@@ -220,7 +212,7 @@ const initialState = [
 ];
 
 function ListTasks({ task }) {
-  const [radio, setradio] = useState(true);
+  // const [radio, setradio] = useState(true);
 
   const newDate = new Date(task.date);
   const day = newDate.getDay();
