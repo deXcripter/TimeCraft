@@ -22,3 +22,20 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.createTask {
+  background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 10px 0;
+}
+
+.createTask form div input {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+}
