@@ -9,9 +9,7 @@ import styles from './Body.module.css';
 export default function Body() {
   return (
     <section className=" w-full bg-gray-100 overflow-scroll">
-      <Controller />
-      {/* <Tasks /> */}
-      <Signup />
+      <Tasks />
     </section>
   );
 }
@@ -125,19 +123,30 @@ function Tasks() {
   // fetch the actual tasks here
   const [tasks, setTasks] = useState(initialState);
 
-  // useEffect(() => {
-  //   async function fetchTasks() {
-  //     const userId = '659bf61557bf80a9f0fb7536';
-  //     try {
-  //       const res = await axios.get(`http://localhost:2525/api/v1/tasks/`);
-  //       setTasks(res.data.data);
-  //     } catch (err) {
-  //       console.log(err.message);
-  //     }
-  //   }
+  useEffect(() => {
+    async function fetchTasks() {
+      try {
+        const res = await axios.request(
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            method: 'GET',
+            url: `http://localhost:2525/api/v1/tasks/`,
+          },
+          {
+            authorization: localStorage.getItem('token'),
+          },
+        );
+        setTasks(res.data.data);
+        console.log('done');
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
 
-  //   fetchTasks();
-  // }, []);
+    fetchTasks();
+  }, []);
 
   return (
     <div className={styles.tasks}>
