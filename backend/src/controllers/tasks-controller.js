@@ -12,14 +12,16 @@ async function handleInvalidId(req) {
 // create task
 exports.createTask = async (req, res, next) => {
   try {
-    if (!req.body.task) {
-      next(new appError('Please enter a task', 400));
+    if (!req.body.description) {
+      return next(new appError('Please enter a task', 400));
     }
 
     const body = {
-      task: req.body.task,
+      description: req.body.description,
       priority: req.body.priority,
+      priority: req.body.id,
       userID: req.decoded.id,
+      date: req.body.date,
     };
     const task = await Task.create(body);
 
@@ -35,6 +37,7 @@ exports.createTask = async (req, res, next) => {
 // find task
 exports.tasks = async (req, res, next) => {
   try {
+    //  const task = await Task.find();
     const task = await Task.find({ userID: req.decoded.id });
     return res
       .status(200)
