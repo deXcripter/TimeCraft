@@ -42,7 +42,6 @@ export function Tasks() {
   );
 }
 function ListTasks({ task }) {
-  // const [radio, setradio] = useState(true);
   const newDate = new Date(task.date);
   const day = newDate.getDay();
   const date = newDate.getDate();

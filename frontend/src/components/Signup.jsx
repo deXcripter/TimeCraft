@@ -8,9 +8,11 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassowrd] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      console.log('hmm');
       const res = await axios.post(
         'http://localhost:2525/api/v1/users/signup',
         {
