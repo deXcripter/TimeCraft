@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Login({ triggerLoggedStatus }) {
   const [email, setEmail] = useState('');
@@ -32,7 +34,7 @@ function Login({ triggerLoggedStatus }) {
 
   return (
     <form
-      className="max-w-md mx-auto p-8 space-y-6 bg-white rounded-md shadow-md"
+      className="max-w-md mx-auto my-20 p-8 space-y-6 bg-white rounded-md shadow-md"
       onSubmit={handleSubmit}
     >
       <div className="text-center">
