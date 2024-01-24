@@ -15,7 +15,6 @@ const {
 Router.post('/signup', signup);
 Router.post('/signin', signin);
 Router.post('/forgotpassword', forgotPassword);
-// Router.post('/updatePassword', updatePassword);
 Router.post('/resetpassword/:token', resetPassword);
 
 Router.route('/').get(getAllUsers);
