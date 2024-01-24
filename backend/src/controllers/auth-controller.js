@@ -1,6 +1,5 @@
 const User = require('../models/user-model');
 const appError = require('../utils/app-error');
-const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { sendEmail } = require('../utils/email');
@@ -36,7 +35,6 @@ const sendToken = (user, statusCode, res) => {
 exports.signup = async (req, res, next) => {
   try {
     if (!req.body.name || !req.body.password || !req.body.passwordConfirm) {
-      console.log('click');
       return next(new appError('Missing details', 400));
     }
     const userDetails = {
