@@ -10,9 +10,9 @@ function Signup() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
   async function handleSubmit(e) {
+    if (!name || !email || !password || !passwordConfirm) return;
     e.preventDefault();
     try {
-      console.log('hmm');
       const res = await axios.post(
         'http://localhost:2525/api/v1/users/signup',
         {
