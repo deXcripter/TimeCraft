@@ -5,6 +5,7 @@ import styles from './Body.module.css';
 import Header from './Header';
 import Footer from './Footer';
 import CreateTask from './CreateTask';
+import { useNavigate } from 'react-router-dom';
 
 export function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -37,13 +38,17 @@ export function Tasks() {
   return (
     <>
       <Header />
-      <main className="grid grid-cols-[1fr_4fr]">
+      <main className="grid grid-cols-[1fr_4fr] overflow-scroll">
         <CreateTask />
         <div className={styles.tasks}>
           {tasks.length > 0 ? (
-            <ul className="space-y-3 rounded-lg bg-blue-400 overflow-scroll">
+            <ul className="space-y-3 rounded-lg bg-blue-500 overflow-scroll">
               {tasks.map((task) => (
-                <ListTasks task={task} key={crypto.randomUUID()} />
+                <ListTasks
+                  setTasks={setTasks}
+                  task={task}
+                  key={crypto.randomUUID()}
+                />
               ))}
             </ul>
           ) : (
@@ -56,30 +61,33 @@ export function Tasks() {
   );
 }
 
-async function deleteTask(id) {
-  try {
-    const res = await axios.request(
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        method: 'DELETE',
-        url: `http://localhost:2525/api/v1/tasks/${id}`,
-      },
-      {
-        authorization: localStorage.getItem('token'),
-      },
-    );
-  } catch (err) {
-    console.log(err.message);
-  }
-}
+function ListTasks({ task, setTasks }) {
+  const navigate = useNavigate();
 
-function ListTasks({ task }) {
   const newDate = new Date(task.date);
   const day = newDate.getDay();
   const month = newDate.getUTCMonth();
   const date = newDate.getDate();
+
+  async function deleteTask(id) {
+    try {
+      await axios.request(
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          method: 'DELETE',
+          url: `http://localhost:2525/api/v1/tasks/${id}`,
+        },
+        {
+          authorization: localStorage.getItem('token'),
+        },
+      );
+      setTasks((tasks) => tasks.filter((el) => el._id !== id));
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   function convertDay(enteredDate) {
     if (enteredDate > 6) return 'invalid date';
