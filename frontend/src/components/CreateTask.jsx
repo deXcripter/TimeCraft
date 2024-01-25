@@ -1,15 +1,20 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function CreateTask() {
+export default function CreateTask({ setTasks, tasks }) {
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [priority, setPriority] = useState('');
 
+  // function addTask(newTask) {
+  //   setTasks(el=> el )
+  // }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const res = await axios.post(
         'http://localhost:2525/api/v1/tasks/',
         {
           description,
@@ -22,6 +27,11 @@ export default function CreateTask() {
           },
         },
       );
+      const data = res.data.data;
+
+      const newTasks = [...tasks];
+      newTasks.push(data);
+      setTasks(newTasks);
     } catch (err) {
       console.log(err.message);
     }

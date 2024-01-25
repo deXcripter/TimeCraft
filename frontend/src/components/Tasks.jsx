@@ -5,7 +5,6 @@ import styles from './Body.module.css';
 import Header from './Header';
 import Footer from './Footer';
 import CreateTask from './CreateTask';
-import { useNavigate } from 'react-router-dom';
 
 export function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -39,11 +38,11 @@ export function Tasks() {
     <>
       <Header />
       <main className="grid grid-cols-[1fr_4fr] overflow-scroll">
-        <CreateTask />
+        <CreateTask tasks={tasks} setTasks={setTasks} />
         <div className={styles.tasks}>
-          {tasks.length > 0 ? (
-            <ul className="space-y-3 rounded-lg bg-blue-500 overflow-scroll">
-              {tasks.map((task) => (
+          {tasks?.length > 0 ? (
+            <ul className="space-y-3 rounded-lg bg-blue-400 overflow-scroll">
+              {tasks?.map((task) => (
                 <ListTasks
                   setTasks={setTasks}
                   task={task}
@@ -62,8 +61,6 @@ export function Tasks() {
 }
 
 function ListTasks({ task, setTasks }) {
-  const navigate = useNavigate();
-
   const newDate = new Date(task.date);
   const day = newDate.getDay();
   const month = newDate.getUTCMonth();
