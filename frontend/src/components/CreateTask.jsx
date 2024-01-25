@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export const CreateTask = () => {
+export default function CreateTask() {
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [priority, setPriority] = useState('');
@@ -97,4 +97,4 @@ export const CreateTask = () => {
       </form>
     </div>
   );
-};
+}

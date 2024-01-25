@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { useState } from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassowrd] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     if (!name || !email || !password || !passwordConfirm) return;
@@ -26,6 +28,7 @@ function Signup() {
       const data = await res.data;
       const token = data.token;
       localStorage.setItem('token', token);
+      navigate('/tasks');
     } catch (err) {
       console.log(err.message);
     } finally {

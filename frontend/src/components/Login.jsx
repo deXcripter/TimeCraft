@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { useState } from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Login({ triggerLoggedStatus }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,7 +25,7 @@ function Login({ triggerLoggedStatus }) {
       const token = data.token;
       localStorage.setItem('token', token);
       console.log(token);
-      triggerLoggedStatus(true);
+      navigate('/tasks');
     } catch (err) {
       console.log(err.message);
     } finally {

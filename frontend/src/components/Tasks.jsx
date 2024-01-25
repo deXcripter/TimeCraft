@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './Body.module.css';
+import Header from './Header';
+import Footer from './Footer';
+import CreateTask from './CreateTask';
 
 export function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -32,13 +35,23 @@ export function Tasks() {
   }, []);
 
   return (
-    <div className={styles.tasks}>
-      <ul className="space-y-3 rounded-lg bg-blue-300 overflow-scroll">
-        {tasks.map((task) => (
-          <ListTasks task={task} key={crypto.randomUUID()} />
-        ))}
-      </ul>
-    </div>
+    <>
+      <Header />
+      <CreateTask />
+      {/* <CreateTask /> */}
+      <div className={styles.tasks}>
+        {tasks.length > 0 ? (
+          <ul className="space-y-3 rounded-lg bg-blue-300 overflow-scroll">
+            {tasks.map((task) => (
+              <ListTasks task={task} key={crypto.randomUUID()} />
+            ))}
+          </ul>
+        ) : (
+          <h1 className=" ">Please add tasks</h1>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }
 function ListTasks({ task }) {
