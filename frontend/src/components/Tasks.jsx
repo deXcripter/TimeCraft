@@ -37,19 +37,20 @@ export function Tasks() {
   return (
     <>
       <Header />
-      <CreateTask />
-      {/* <CreateTask /> */}
-      <div className={styles.tasks}>
-        {tasks.length > 0 ? (
-          <ul className="space-y-3 rounded-lg bg-blue-300 overflow-scroll">
-            {tasks.map((task) => (
-              <ListTasks task={task} key={crypto.randomUUID()} />
-            ))}
-          </ul>
-        ) : (
-          <h1 className=" ">Please add tasks</h1>
-        )}
-      </div>
+      <body className="grid grid-cols-[1fr_4fr]">
+        <CreateTask />
+        <div className={styles.tasks}>
+          {tasks.length > 0 ? (
+            <ul className="space-y-3 rounded-lg bg-blue-300 overflow-scroll">
+              {tasks.map((task) => (
+                <ListTasks task={task} key={crypto.randomUUID()} />
+              ))}
+            </ul>
+          ) : (
+            <h1 className=" ">Please add tasks</h1>
+          )}
+        </div>
+      </body>
       <Footer />
     </>
   );
@@ -57,6 +58,7 @@ export function Tasks() {
 function ListTasks({ task }) {
   const newDate = new Date(task.date);
   const day = newDate.getDay();
+  const month = newDate.getUTCMonth();
   const date = newDate.getDate();
 
   function convertDay(enteredDate) {
@@ -71,11 +73,28 @@ function ListTasks({ task }) {
     else return 'Invald date';
   }
 
+  function convertMonth(enteredMonth) {
+    if (enteredMonth + 1 === 1) return 'Jan';
+    if (enteredMonth + 1 === 2) return 'Feb';
+    if (enteredMonth + 1 === 3) return 'Mar';
+    if (enteredMonth + 1 === 4) return 'Apr';
+    if (enteredMonth + 1 === 5) return 'May';
+    if (enteredMonth + 1 === 6) return 'Jun';
+    if (enteredMonth + 1 === 7) return 'Jul';
+    if (enteredMonth + 1 === 8) return 'Aug';
+    if (enteredMonth + 1 === 9) return 'Sep';
+    if (enteredMonth + 1 === 10) return 'Oct';
+    if (enteredMonth + 1 === 11) return 'Nov';
+    if (enteredMonth + 1 === 12) return 'Dec';
+  }
+
   return (
     <li className="overflow-scroll rounded-md px-5 h-auto bg-blue-50 text-left grid grid-cols-[50px_auto_100px] items-center">
       <div className="text-center h-auto">
         <div>{convertDay(day)}</div>
-        <div className="text-xl">{date}</div>
+        <div className="text-xl">
+          {convertMonth(month)} {date}
+        </div>
       </div>
       <div className="px-7 flex align-top h-auto">
         <p className="text-lg">{task.description}</p>
