@@ -25,7 +25,7 @@ export function Tasks() {
           },
         );
         setTasks(res.data.data);
-        console.log('done');
+        // console.log(res.data.data.at(0)._id);
       } catch (err) {
         console.log(err.message);
       }
@@ -37,11 +37,11 @@ export function Tasks() {
   return (
     <>
       <Header />
-      <body className="grid grid-cols-[1fr_4fr]">
+      <main className="grid grid-cols-[1fr_4fr]">
         <CreateTask />
         <div className={styles.tasks}>
           {tasks.length > 0 ? (
-            <ul className="space-y-3 rounded-lg bg-blue-300 overflow-scroll">
+            <ul className="space-y-3 rounded-lg bg-blue-400 overflow-scroll">
               {tasks.map((task) => (
                 <ListTasks task={task} key={crypto.randomUUID()} />
               ))}
@@ -50,11 +50,31 @@ export function Tasks() {
             <h1 className=" ">Please add tasks</h1>
           )}
         </div>
-      </body>
+      </main>
       <Footer />
     </>
   );
 }
+
+async function deleteTask(id) {
+  try {
+    const res = await axios.request(
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        method: 'DELETE',
+        url: `http://localhost:2525/api/v1/tasks/${id}`,
+      },
+      {
+        authorization: localStorage.getItem('token'),
+      },
+    );
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
 function ListTasks({ task }) {
   const newDate = new Date(task.date);
   const day = newDate.getDay();
@@ -100,6 +120,12 @@ function ListTasks({ task }) {
         <p className="text-lg">{task.description}</p>
       </div>
       {task.completed && <div className="">Completed</div>}
+      <button
+        onClick={() => deleteTask(task._id)}
+        className="bg-red-400 rounded-md uppercase"
+      >
+        Delete
+      </button>
     </li>
   );
 }

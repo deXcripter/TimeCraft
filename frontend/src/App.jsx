@@ -2,10 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import { Tasks } from './components/Tasks';
-import { useState } from 'react';
 
 export default function App() {
-  const [loggedStatus, setLoggedStatus] = useState(true);
   return (
     <div className="h-screen text-gray-900 grid grid-rows-[auto_1fr_auto] text-sm">
       <BrowserRouter>
