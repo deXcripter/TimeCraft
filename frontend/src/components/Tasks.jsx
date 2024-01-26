@@ -7,6 +7,10 @@ import Footer from './Footer';
 import CreateTask from './CreateTask';
 import { useNavigate } from 'react-router-dom';
 
+const protocol = 'http';
+const url = 'localhost';
+const port = '2525';
+
 export function Tasks() {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
@@ -20,14 +24,13 @@ export function Tasks() {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
             method: 'GET',
-            url: `http://localhost:2525/api/v1/tasks/`,
+            url: `${protocol}://${url}:${port}/api/v1/tasks/`,
           },
           {
             authorization: localStorage.getItem('token'),
           },
         );
         setTasks(res.data.data);
-        // console.log(res.data.data.at(0)._id);
       } catch (err) {
         navigate('/login');
 

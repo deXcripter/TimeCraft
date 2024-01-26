@@ -19,7 +19,6 @@ exports.createTask = async (req, res, next) => {
     const body = {
       description: req.body.description,
       priority: req.body.priority,
-      priority: req.body.id,
       userID: req.decoded.id,
       date: req.body.date,
     };

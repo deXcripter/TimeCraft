@@ -11,8 +11,7 @@ const taskSchema = new mongoose.Schema({
   priority: {
     type: Number,
     required: [true, 'A task must have a priority'],
-    default: 1,
-    enum: [1, 2, 3], // 3 for most, 1 for least priority
+    enum: [1, 2, 3],
   },
   userID: {
     type: String,
