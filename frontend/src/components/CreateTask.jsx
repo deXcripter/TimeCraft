@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateTask({ setTasks, tasks }) {
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [priority, setPriority] = useState('');
 
-  // function addTask(newTask) {
-  //   setTasks(el=> el )
-  // }
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +32,7 @@ export default function CreateTask({ setTasks, tasks }) {
       newTasks.push(data);
       setTasks(newTasks);
     } catch (err) {
+      navigate('/login');
       console.log(err.message);
     }
 

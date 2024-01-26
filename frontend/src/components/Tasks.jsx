@@ -5,9 +5,11 @@ import styles from './Body.module.css';
 import Header from './Header';
 import Footer from './Footer';
 import CreateTask from './CreateTask';
+import { useNavigate } from 'react-router-dom';
 
 export function Tasks() {
   const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchTasks() {
@@ -27,6 +29,8 @@ export function Tasks() {
         setTasks(res.data.data);
         // console.log(res.data.data.at(0)._id);
       } catch (err) {
+        navigate('/login');
+
         console.log(err.message);
       }
     }
