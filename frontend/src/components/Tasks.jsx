@@ -7,6 +7,8 @@ import Footer from './Footer';
 import CreateTask from './CreateTask';
 import { useNavigate } from 'react-router-dom';
 
+import Loading from './Loading';
+
 const protocol = 'http';
 const url = 'localhost';
 const port = '2525';
@@ -14,10 +16,12 @@ const port = '2525';
 export function Tasks() {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchTasks() {
       try {
+        setLoading(true);
         const res = await axios.request(
           {
             headers: {
@@ -35,6 +39,8 @@ export function Tasks() {
         navigate('/login');
 
         console.log(err.message);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -44,24 +50,28 @@ export function Tasks() {
   return (
     <>
       <Header />
+      {loading && <Loading />}
       <main className="grid grid-cols-[1fr_4fr] overflow-scroll">
         <CreateTask tasks={tasks} setTasks={setTasks} />
-        <div className={styles.tasks}>
-          {tasks?.length > 0 ? (
-            <ul className="space-y-3 rounded-lg bg-blue-400 overflow-scroll">
-              {tasks?.map((task) => (
-                <ListTasks
-                  setTasks={setTasks}
-                  task={task}
-                  key={crypto.randomUUID()}
-                />
-              ))}
-            </ul>
-          ) : (
-            <h1 className=" ">Please add tasks</h1>
-          )}
-        </div>
+        {!loading && (
+          <div className={styles.tasks}>
+            {tasks?.length > 0 ? (
+              <ul className="space-y-3 rounded-lg bg-blue-400 overflow-scroll">
+                {tasks?.map((task) => (
+                  <ListTasks
+                    setTasks={setTasks}
+                    task={task}
+                    key={crypto.randomUUID()}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <h1 className=" ">Please add tasks</h1>
+            )}
+          </div>
+        )}
       </main>
+
       <Footer />
     </>
   );

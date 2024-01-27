@@ -8,6 +8,7 @@ export default function App() {
     <div className="h-screen text-gray-900 grid grid-rows-[auto_1fr_auto] text-sm">
       <BrowserRouter>
         <Routes>
+          <Route index element={<Tasks />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="tasks" element={<Tasks />} />
