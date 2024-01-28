@@ -15,3 +15,16 @@ exports.getAllUsers = async (req, res, next) => {
     return next(err);
   }
 };
+
+exports.deleteMe = async (req, res, next) => {
+  try {
+    const user = req.decoded.id;
+    if (!user) return next(new appError('Please log in'));
+
+    User.findByIdAndDelete(user);
+  } catch (err) {
+    return next();
+  }
+};
+
+exports.updateMe = async (req, res, next) => {};
