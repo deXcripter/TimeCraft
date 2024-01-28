@@ -4,6 +4,10 @@
   font-family: 'Rubik', sans-serif;
   font-size: x-large;
   letter-spacing: 2px;
+  height: 30px;
+  font-size: 25px;
+  margin: auto 2px;
+  /* background-color: red; */
 }
 
 /* text-xl font-bold justify-start tracking-wider font- */
