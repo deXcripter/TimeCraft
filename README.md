@@ -1,12 +1,12 @@
 # TimeCraft💡
 
-### Description
+## Description
 
 An efficient way to manage your tasks.
 
 ### Quick Start
 
-### Usage
+No live preview yet
 
 ## Contributing to TimeCraft💡
 
@@ -30,22 +30,22 @@ Before you start contributing, please make sure you have the following:
 
 3. Create a new branch for your contribution
 
-```bash
-git checkout -b feature/your-feature
-```
+   ```bash
+   git checkout -b feature/your-feature
+   ```
 
 4. Make your changes and test them locally.
 5. Commit your message with a meaningful commit message
 
-```bash
-git commit -m "Add feature: your feature description"
-```
+   ```bash
+   git commit -m "Add feature: your feature description"
+   ```
 
 6. Push your changes to your forked repository
 
-```bash
-git push origin feature/your-feature
-```
+   ```bash
+   git push origin feature/your-feature
+   ```
 
 7. Open a pull request from your branch to the `main` branch of the original repository
 
