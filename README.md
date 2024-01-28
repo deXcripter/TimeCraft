@@ -4,7 +4,7 @@
 
 An efficient way to manage your tasks.
 
-### Quick Start
+## Quick Start
 
 No live preview yet
 
