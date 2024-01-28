@@ -3,6 +3,7 @@ import styles from './Header.module.css';
 
 export default function Header() {
   const navigate = useNavigate();
+
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/login');

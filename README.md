@@ -1,24 +1,54 @@
-### TimeCraft💡
+# TimeCraft💡
 
 ### Description
-An efficient way to manage your daily tasks.
+
+An efficient way to manage your tasks.
 
 ### Quick Start
 
 ### Usage
 
-### Contributing
+## Contributing to TimeCraft💡
 
-###### TASKS RESOURCE
+Thank you for considering contributing to [Your Project Name]! We welcome contributions from the community to help improve the project.
 
-- [x] CRUD operations: Implement endpoints for creating, reading, updating, and deleting tasks.
-- [x] User Registration and Authorization: Allows users to register accounts and authorize themselves before accessing their tasks.
-- [ ] Implement advanced API features (Querying, Sorting, and Pagination).
-- [x] Add three (3) levels of priority to each tasks.
+### Getting Started
 
-###### USERS RESOURCE
+Before you start contributing, please make sure you have the following:
 
-- [x] Design and develop authentication system to allow only logged in users manage 'their' tasks.
-- [x] Implement "Forgot password" functionality" to allow users reset their password.
-- [ ] Allow a User to be able to delete his account.
+- Node.js and npm installed on your machine
+- Git installed on your machine
 
+### How to Contribute
+
+1. Fork the repository to your GitHub account.
+2. Clone the forked repository to your local machine:
+
+   ```bash
+   git clone https://github.com/debugger0x/TimeCraft.git
+   ```
+
+3. Create a new branch for your contribution
+
+```bash
+git checkout -b feature/your-feature
+```
+
+4. Make your changes and test them locally.
+5. Commit your message with a meaningful commit message
+
+```bash
+git commit -m "Add feature: your feature description"
+```
+
+6. Push your changes to your forked repository
+
+```bash
+git push origin feature/your-feature
+```
+
+7. Open a pull request from your branch to the `main` branch of the original repository
+
+### Reporting Issues
+
+If you encounter any issues or have suggestions for improvement, please open an issue on the GitHub repository. Provide detailed information about the problem, including steps to reproduce it.
