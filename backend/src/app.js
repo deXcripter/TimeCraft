@@ -6,6 +6,8 @@ const cors = require('cors');
 const globalError = require('./controllers/error-controller');
 const versionOneApi = require('./versioning/version-one');
 const appError = require('./utils/app-error');
+
+// app
 const app = express();
 app.use(cors());
 
