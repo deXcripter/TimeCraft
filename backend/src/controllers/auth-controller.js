@@ -1,8 +1,8 @@
-const User = require('../models/user-model');
-const appError = require('../utils/app-error');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const { sendEmail } = require('../utils/email');
+const User = require("../models/user-model");
+const appError = require("../utils/app-error");
+const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const { sendEmail } = require("../utils/email");
 
 // functions
 const signToken = (id) => {
@@ -20,12 +20,12 @@ const sendToken = (user, statusCode, res) => {
     httpOnly: true,
   };
 
-  if (process.env.NODE_ENV === 'production') cookieDetails.secure = true;
+  if (process.env.NODE_ENV === "production") cookieDetails.secure = true;
 
-  res.cookie = ('jwt', token, cookieDetails);
+  res.cookie = ("jwt", token, cookieDetails);
 
   res.status(statusCode).json({
-    status: 'success',
+    status: "success",
     user,
     token,
   });
@@ -35,7 +35,7 @@ const sendToken = (user, statusCode, res) => {
 exports.signup = async (req, res, next) => {
   try {
     if (!req.body.name || !req.body.password || !req.body.passwordConfirm) {
-      return next(new appError('Missing details', 400));
+      return next(new appError("Missing details", 400));
     }
     const userDetails = {
       name: req.body.name,
@@ -48,9 +48,13 @@ exports.signup = async (req, res, next) => {
 
     if (!newUser) {
       return next(
-        new appError('An error occured while creating the user', 400)
+        new appError("An error occured while creating the user", 400)
       );
     }
+
+    newUser.passwordChangedAt = undefined;
+    newUser.password = undefined;
+    newUser.active = undefined;
 
     sendToken(newUser, 201, res);
   } catch (err) {
@@ -63,17 +67,17 @@ exports.signin = async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password)
-      next(new appError('Please input your email and password', 400));
+      next(new appError("Please input your email and password", 400));
 
-    const user = await User.findOne({ email }).select('password');
+    const user = await User.findOne({ email }).select("password");
 
     // remember to test this later //
     if (!user || !(await user.comparePasswords(password, user.password))) {
-      return next(new appError('Invalid credentials', 400));
+      return next(new appError("Invalid credentials", 400));
     }
 
     const token = signToken(user._id);
-    res.status(200).json({ status: 'success', token });
+    res.status(200).json({ status: "success", token });
   } catch (err) {
     return next(err);
   }
@@ -82,9 +86,9 @@ exports.signin = async (req, res, next) => {
 exports.protection = async (req, res, next) => {
   try {
     // check if header exists first
-    const [bearer, token] = `${req.headers.authorization}`.split(' ');
-    if (!`${bearer}`.startsWith('Bearer') || !token)
-      return next(new appError('Please login to perform this operation', 401));
+    const [bearer, token] = `${req.headers.authorization}`.split(" ");
+    if (!`${bearer}`.startsWith("Bearer") || !token)
+      return next(new appError("Please login to perform this operation", 401));
 
     // verify if token hasn't been manupualated
     try {
@@ -101,12 +105,12 @@ exports.protection = async (req, res, next) => {
 
     if (!user)
       return next(
-        new appError('The user belonging to this token no longer exists')
+        new appError("The user belonging to this token no longer exists")
       );
 
     // check if user has changed password since token generation
     if (user.changedPassword(decoded.iat))
-      return next(new appError('Password changed. Please log in', 401));
+      return next(new appError("Password changed. Please log in", 401));
 
     req.decoded = decoded;
     next();
@@ -121,14 +125,14 @@ exports.forgotPassword = async (req, res, next) => {
 
     if (!user)
       return next(
-        new appError('There is no user with this email address', 404)
+        new appError("There is no user with this email address", 404)
       );
 
     const resetToken = user.resetPasswordTokenFn();
     await user.save({ validateBeforeSave: false });
 
     const resetUrl = `${req.protocol}://${req.get(
-      'host'
+      "host"
     )}/api/v1/users/resetPassword/${resetToken}`;
 
     const message = `Forgotten password? Submit a fetch requrest with your new password and password confirm to: ${resetUrl}.\nIf you didn't initiate this, please feel free to ignore this email`;
@@ -136,7 +140,7 @@ exports.forgotPassword = async (req, res, next) => {
     try {
       await sendEmail({
         email: req.body.email,
-        subject: 'Valid for 10 minutes',
+        subject: "Valid for 10 minutes",
         message,
       });
     } catch (err) {
@@ -147,13 +151,13 @@ exports.forgotPassword = async (req, res, next) => {
       user.save();
 
       return next(
-        new appError('Error sending emial, please try again later', 500)
+        new appError("Error sending emial, please try again later", 500)
       );
     }
 
     res.status(200).json({
-      status: 'success',
-      message: 'please check your email',
+      status: "success",
+      message: "please check your email",
     });
   } catch (err) {
     next(err);
@@ -163,9 +167,9 @@ exports.forgotPassword = async (req, res, next) => {
 exports.resetPassword = async (req, res, next) => {
   try {
     const token = crypto
-      .createHash('sha256')
+      .createHash("sha256")
       .update(req.params.token)
-      .digest('hex');
+      .digest("hex");
 
     const user = await User.findOne({
       passwordResetToken: token,
@@ -174,7 +178,7 @@ exports.resetPassword = async (req, res, next) => {
       },
     });
 
-    if (!user) return next(new appError('Token is invalid or Expired', 400));
+    if (!user) return next(new appError("Token is invalid or Expired", 400));
 
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;
@@ -184,7 +188,7 @@ exports.resetPassword = async (req, res, next) => {
     await user.save();
 
     res.status(201).json({
-      status: 'success',
+      status: "success",
       data: {
         user,
       },
