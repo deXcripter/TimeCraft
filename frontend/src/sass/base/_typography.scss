@@ -3,9 +3,11 @@
 }
 
 .section-1 {
-  padding: 25px;
+  padding: 25px 0;
   text-align: center;
   color: white;
+  max-width: 1500px;
+  margin: auto 0px;
 
   &-h1 {
     font-size: 5rem;
@@ -14,6 +16,26 @@
 
   &-p {
     font-size: 2rem;
+    max-width: 85%;
+    margin: 0px auto;
     font-weight: 500;
+  }
+
+  &-img img {
+    width: auto;
+    margin: 0;
+  }
+}
+
+.brand {
+  font-size: 2rem;
+  margin-top: -50px;
+
+  &-description {
+    color: $color-gold-light;
+    font-size: 3.5rem;
+  }
+
+  &-list {
   }
 }

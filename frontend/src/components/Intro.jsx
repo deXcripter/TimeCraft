@@ -12,6 +12,9 @@ function Intro() {
         We have enerything you need to streamline your workflow. Start your
         journery into enhanced productivity today!
       </p>
+      <div className="section-1-img">
+        <img src="./src/assets/docs.svg" alt="docs" />
+      </div>
     </div>
   );
 }

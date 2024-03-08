@@ -24,9 +24,11 @@ body {
 }
 
 .section-1 {
-  padding: 25px;
+  padding: 25px 0;
   text-align: center;
   color: white;
+  max-width: 1500px;
+  margin: auto 0px;
 }
 .section-1-h1 {
   font-size: 5rem;
@@ -34,9 +36,23 @@ body {
 }
 .section-1-p {
   font-size: 2rem;
+  max-width: 85%;
+  margin: 0px auto;
   font-weight: 500;
 }
+.section-1-img img {
+  width: auto;
+  margin: 0;
+}
 
+.brand {
+  font-size: 2rem;
+  margin-top: -50px;
+}
+.brand-description {
+  color: #ffdc76;
+  font-size: 3.5rem;
+}
 .homepage-header {
   padding: 50px;
   display: flex;
