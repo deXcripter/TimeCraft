@@ -11,7 +11,7 @@ function Header() {
 }
 
 function Logo() {
-  return <div className="logo">TimeCraft</div>;
+  return <div className="logo">TimeCraft.</div>;
 }
 
 function SignupButton() {

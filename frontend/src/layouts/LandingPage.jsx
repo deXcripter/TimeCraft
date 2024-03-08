@@ -1,10 +1,13 @@
 import Header from "../components/Header";
+import Intro from "../components/Intro";
 
 function LandingPage() {
   return (
     <div>
       <Header />
-      <main></main>
+      <main>
+        <Intro />
+      </main>
     </div>
   );
 }
