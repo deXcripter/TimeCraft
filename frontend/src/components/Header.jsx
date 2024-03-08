@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <div className="header">
+    <div className="homepage-header">
       <Logo />
       <span className="auth-control">
         <SignupButton />
@@ -11,15 +11,15 @@ function Header() {
 }
 
 function Logo() {
-  return <div className="logo">TimeCraft.</div>;
+  return <div className="homepage-logo">TimeCraft.</div>;
 }
 
 function SignupButton() {
-  return <button className="signup">Sign up</button>;
+  return <button className="homepage-signup">Sign up</button>;
 }
 
 function LoginButton() {
-  return <button className="login">Log in</button>;
+  return <button className="homepage-login">Log in</button>;
 }
 
 export default Header;

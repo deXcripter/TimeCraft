@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: #1f2636;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.homepage-header {
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
+.homepage-signup {
+  background-color: #233b6e;
+  padding: 10px 20px;
+}
+.homepage-login {
+  color: blue;
+}
+
+.auth-control {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  padding: 0 20px;
+}
+
+/*# sourceMappingURL=styles.css.map */

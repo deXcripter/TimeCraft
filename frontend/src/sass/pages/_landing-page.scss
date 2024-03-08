@@ -1,0 +1,26 @@
+.homepage {
+  &-header {
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+  }
+
+  &-signup {
+    background-color: $color-purple-light;
+    // color: ;
+    padding: 10px 20px;
+  }
+
+  &-login {
+    color: blue;
+  }
+}
+
+.auth-control {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  padding: 0 20px;
+}
