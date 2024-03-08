@@ -1,0 +1,19 @@
+.intro-gold {
+  color: $color-gold-dark;
+}
+
+.section-1 {
+  padding: 25px;
+  text-align: center;
+  color: white;
+
+  &-h1 {
+    font-size: 5rem;
+    padding: 60px;
+  }
+
+  &-p {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}

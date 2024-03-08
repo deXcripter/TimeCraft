@@ -10,6 +10,8 @@
   &-logo {
     font-size: large;
     font-weight: bold;
+    font-size: 3rem;
+    font-weight: bold;
   }
 
   &-signup {
@@ -18,13 +20,17 @@
     padding: 15px 30px;
     margin-right: 20px;
     border-radius: 4px;
+    font-weight: bold;
     border: none;
+    font-size: 1.4rem;
   }
 
   &-login {
     border: 1px solid $color-gold-light;
     border-radius: 4px;
     padding: 15px 30px;
+    font-weight: bold;
+    font-size: 1.4rem;
     color: $color-white-light;
     background-color: transparent;
   }
@@ -35,23 +41,4 @@
   justify-content: space-between;
   width: 300px;
   padding: 0 20px;
-}
-
-.intro-gold {
-  color: $color-gold-dark;
-}
-
-.section-1 {
-  padding: 25px;
-  text-align: center;
-  color: white;
-
-  &-h1 {
-    font-size: 5rem;
-    padding: 60px;
-  }
-
-  &-p {
-    font-size: 2rem;
-  }
 }
