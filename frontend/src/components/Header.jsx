@@ -15,7 +15,7 @@ function Logo() {
 }
 
 function SignupButton() {
-  return <button className="homepage-signup">Sign up</button>;
+  return <button className="homepage-signup">Start now</button>;
 }
 
 function LoginButton() {
