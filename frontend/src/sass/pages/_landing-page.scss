@@ -7,6 +7,11 @@
     align-items: center;
   }
 
+  &-logo {
+    font-size: large;
+    font-weight: bold;
+  }
+
   &-signup {
     background-color: $color-purple-light;
     // color: ;
@@ -23,4 +28,23 @@
   justify-content: space-between;
   width: 200px;
   padding: 0 20px;
+}
+
+.intro-gold {
+  color: $color-gold-dark;
+}
+
+.section-1 {
+  padding: 50px;
+  text-align: center;
+  color: white;
+
+  &-h1 {
+    font-size: 5rem;
+    padding: 90px;
+  }
+
+  &-p {
+    font-size: 2rem;
+  }
 }

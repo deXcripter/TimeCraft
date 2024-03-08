@@ -25,6 +25,10 @@ body {
   text-align: center;
   align-items: center;
 }
+.homepage-logo {
+  font-size: large;
+  font-weight: bold;
+}
 .homepage-signup {
   background-color: #233b6e;
   padding: 10px 20px;
@@ -38,6 +42,23 @@ body {
   justify-content: space-between;
   width: 200px;
   padding: 0 20px;
+}
+
+.intro-gold {
+  color: #ecb22e;
+}
+
+.section-1 {
+  padding: 50px;
+  text-align: center;
+  color: white;
+}
+.section-1-h1 {
+  font-size: 5rem;
+  padding: 90px;
+}
+.section-1-p {
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
