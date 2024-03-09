@@ -53,6 +53,13 @@ body {
   color: #ffdc76;
   font-size: 3.5rem;
 }
+.brand-list {
+  padding: 10px;
+}
+.brand-list li {
+  padding-bottom: 10px;
+}
+
 .homepage-header {
   padding: 50px;
   display: flex;
