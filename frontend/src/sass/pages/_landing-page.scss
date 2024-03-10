@@ -8,15 +8,15 @@
   }
 
   &-logo {
-    font-size: large;
-    font-weight: bold;
-    font-size: 3rem;
-    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 
     &-text {
+      font-size: large;
+      font-weight: bold;
+      font-size: 3rem;
+      font-weight: bold;
     }
   }
 
