@@ -72,6 +72,9 @@ body {
   font-weight: bold;
   font-size: 3rem;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .homepage-signup {
   background-color: #233b6e;

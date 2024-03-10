@@ -11,7 +11,12 @@ function Header() {
 }
 
 function Logo() {
-  return <div className="homepage-logo">TimeCraft.</div>;
+  return (
+    <div className="homepage-logo">
+      <img src="./src/assets/saly.svg" />
+      <p className="homepage-logo-text">TimeCraft.</p>
+    </div>
+  );
 }
 
 function SignupButton() {
