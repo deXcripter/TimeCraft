@@ -1,3 +1,4 @@
+import Benefits from "../components/Benefits";
 import Brand from "../components/Brand";
 import Header from "../components/Header";
 import Intro from "../components/Intro";
@@ -9,6 +10,7 @@ function LandingPage() {
       <main>
         <Intro />
         <Brand />
+        <Benefits />
       </main>
     </div>
   );
