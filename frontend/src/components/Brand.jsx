@@ -3,31 +3,23 @@ function Brand() {
     <div className="brand">
       <h2 className="brand-description">Big Brands that use TimeCraft</h2>
       <ul className="brand-list">
+        {/* <li>
+          <img src="./src/assets/slack.svg" alt="slack" />
+        </li> */}
         <li>
-          <img src="./src/assets/adobe.svg" />
+          <img src="./src/assets/zelle.svg" alt="zelle" />
         </li>
         <li>
-          {" "}
-          <img src="./src/assets/airbnb.svg" />
+          <img src="./src/assets/adobe.svg" alt="adobe" />
         </li>
         <li>
-          {" "}
-          <img src="./src/assets/trivago.svg" />
+          <img src="./src/assets/airbnb.svg" alt="airbnb" />
         </li>
         <li>
-          {" "}
-          <img src="./src/assets/zelle.svg" />
+          <img src="./src/assets/trivago.svg" alt="trivago" />
         </li>
         <li>
-          {" "}
-          <img src="./src/assets/barclays.svg" />
-        </li>
-        <li>
-          {" "}
-          <img src="./src/assets/slack.svg" />
-        </li>
-        <li>
-          <img src="./src/assets/saly.svg" />
+          <img src="./src/assets/barclays.svg" alt="barclays" />
         </li>
       </ul>
     </div>

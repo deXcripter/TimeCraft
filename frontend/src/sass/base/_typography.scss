@@ -30,16 +30,35 @@
 .brand {
   font-size: 2rem;
   margin-top: -50px;
+  align-items: center;
 
   &-description {
     color: $color-gold-light;
     font-size: 3.5rem;
+    padding: 30px 0;
   }
 
   &-list {
-    padding: 10px;
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 60%;
+    margin: auto;
+    list-style-type: none;
+
     & li {
+      height: 100px;
+      margin-inline: 30px;
+      display: inline-block;
       padding-bottom: 10px;
+      align-items: center;
+
+      & img {
+        max-width: 200%;
+        min-width: 50%;
+        display: inline-block;
+      }
     }
   }
 }
