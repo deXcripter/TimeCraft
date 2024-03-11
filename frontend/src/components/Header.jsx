@@ -1,3 +1,5 @@
+import { Logo } from "./Logo";
+
 function Header() {
   return (
     <div className="homepage-header">
@@ -6,15 +8,6 @@ function Header() {
         <SignupButton />
         <LoginButton />
       </span>
-    </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="homepage-logo">
-      <img src="./src/assets/saly.svg" />
-      <p className="homepage-logo-text">TimeCraft.</p>
     </div>
   );
 }
