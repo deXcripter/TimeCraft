@@ -74,6 +74,10 @@
     display: flex;
     align-items: baseline;
 
+    & h3 {
+      height: 60px;
+    }
+
     & span {
       margin: 10px;
     }
@@ -99,7 +103,17 @@
   & section {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     font-size: 2rem;
+
+    // &:first-child {
+    padding-bottom: 100px;
+    // }
+
+    & img {
+      display: inline-block;
+      max-height: 250px;
+    }
 
     & h3 {
       color: $color-gold-dark;
@@ -107,8 +121,17 @@
       padding-bottom: 10px;
     }
 
+    & div {
+      max-width: 500px;
+      margin: auto 100px;
+    }
+
     & p {
       text-align: left;
     }
   }
+}
+
+.footer {
+  // background-color: red;
 }

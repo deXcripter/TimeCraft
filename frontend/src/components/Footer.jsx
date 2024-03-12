@@ -2,7 +2,7 @@ import { Logo } from "./Logo";
 
 function Footer() {
   return (
-    <div>
+    <div className="footer">
       <Logo />
     </div>
   );

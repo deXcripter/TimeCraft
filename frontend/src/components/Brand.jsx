@@ -3,9 +3,9 @@ function Brand() {
     <div className="brand">
       <h2 className="brand-description">Big Brands that use TimeCraft</h2>
       <ul className="brand-list">
-        {/* <li>
-          <img src="./src/assets/slack.svg" alt="slack" />
-        </li> */}
+        <li>
+          <img src="./src/assets/spotify.svg" alt="slack" />
+        </li>
         <li>
           <img src="./src/assets/zelle.svg" alt="zelle" />
         </li>

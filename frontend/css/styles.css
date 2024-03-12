@@ -88,6 +88,9 @@ body {
   display: flex;
   align-items: baseline;
 }
+.benefits-images h3 {
+  height: 60px;
+}
 .benefits-images span {
   margin: 10px;
 }
@@ -109,12 +112,22 @@ body {
 .extra section {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   font-size: 2rem;
+  padding-bottom: 100px;
+}
+.extra section img {
+  display: inline-block;
+  max-height: 250px;
 }
 .extra section h3 {
   color: #ecb22e;
   text-align: left;
   padding-bottom: 10px;
+}
+.extra section div {
+  max-width: 500px;
+  margin: auto 100px;
 }
 .extra section p {
   text-align: left;
