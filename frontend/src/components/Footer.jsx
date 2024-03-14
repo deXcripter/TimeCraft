@@ -1,10 +1,17 @@
+import { Logo } from "./Logo";
+
 function Footer() {
   return (
     <>
       <div className="footer">
-        <div className="footer-logo-img">
-          <img src="./src/assets/saly.svg" />
-          <p className="footer-logo-img">TimeCraft.</p>
+        <div className="footer-logo">
+          <div className="footer-logo-img">
+            <Logo />
+          </div>
+          <p className="footer-logo-text">
+            Timecraft has been designed to be your ultimate task managment
+            solution for seamless organization and productivity.
+          </p>
         </div>
         <nav>
           <div className="footer-section">

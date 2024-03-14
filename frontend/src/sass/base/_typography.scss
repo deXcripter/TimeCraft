@@ -131,19 +131,33 @@
 
 .footer {
   height: fit-content;
-  padding: 30px;
   background-color: $color-purple-light;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1.5fr 2.5fr;
+
+  &-logo {
+    margin-left: 50px;
+    margin-right: -50px;
+
+    &-img {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      justify-content: center;
+    }
+
+    &-text {
+      font-size: 1.5rem;
+    }
+  }
 
   & nav {
     height: 20vh;
-    // border: 10px solid rgb(184, 119, 119);
     display: flex;
+    padding-top: 30px;
   }
 
   &-section {
-    // border: 5px solid red;
     width: 35%;
     height: 50px;
 
@@ -162,6 +176,7 @@
 }
 
 .copyright {
+  background-color: $color-purple-light;
   height: 5vh;
   display: flex;
   align-items: center;

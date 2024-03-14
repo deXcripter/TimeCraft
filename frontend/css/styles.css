@@ -135,14 +135,27 @@ body {
 
 .footer {
   height: fit-content;
-  padding: 30px;
   background-color: #233b6e;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1.5fr 2.5fr;
+}
+.footer-logo {
+  margin-left: 50px;
+  margin-right: -50px;
+}
+.footer-logo-img {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: center;
+}
+.footer-logo-text {
+  font-size: 1.5rem;
 }
 .footer nav {
   height: 20vh;
   display: flex;
+  padding-top: 30px;
 }
 .footer-section {
   width: 35%;
@@ -160,6 +173,7 @@ body {
 }
 
 .copyright {
+  background-color: #233b6e;
   height: 5vh;
   display: flex;
   align-items: center;
