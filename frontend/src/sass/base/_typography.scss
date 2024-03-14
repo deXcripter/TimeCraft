@@ -130,6 +130,41 @@
 }
 
 .footer {
+  height: fit-content;
+  padding: 30px;
   background-color: $color-purple-light;
-  height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+  & nav {
+    height: 20vh;
+    // border: 10px solid rgb(184, 119, 119);
+    display: flex;
+  }
+
+  &-section {
+    // border: 5px solid red;
+    width: 35%;
+    height: 50px;
+
+    & h3 {
+      color: $color-gold-light;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    & li {
+      font-size: 1.6rem;
+      list-style: none;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.copyright {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
 }
