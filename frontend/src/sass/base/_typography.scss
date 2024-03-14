@@ -105,10 +105,7 @@
     align-items: center;
     justify-content: space-around;
     font-size: 2rem;
-
-    // &:first-child {
     padding-bottom: 100px;
-    // }
 
     & img {
       display: inline-block;
@@ -133,5 +130,6 @@
 }
 
 .footer {
-  // background-color: red;
+  background-color: $color-purple-light;
+  height: 400px;
 }
