@@ -10,7 +10,7 @@ No live preview yet
 
 ## Contributing to TimeCraft💡
 
-Thank you for considering contributing to [Your Project Name]! We welcome contributions from the community to help improve the project.
+Thank you for considering contributing to TimeCraft! We welcome contributions from the community to help improve the project.
 
 ### Getting Started
 
@@ -25,7 +25,7 @@ Before you start contributing, please make sure you have the following:
 2. Clone the forked repository to your local machine:
 
    ```bash
-   git clone https://github.com/debugger0x/TimeCraft.git
+   git clone https://github.com/deXcripter/TimeCraft.git
    ```
 
 3. Create a new branch for your contribution
