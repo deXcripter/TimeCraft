@@ -6,7 +6,7 @@ An efficient way to manage your tasks.
 
 ## Quick Start
 
-No live preview yet
+No live preview yet (Still in development)
 
 ## Contributing to TimeCraft💡
 
